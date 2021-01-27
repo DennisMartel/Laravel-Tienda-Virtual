@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
+use Carbon\Carbon;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
@@ -13,7 +18,8 @@ class BannerController extends Controller
      */
     public function index()
     {
-        return view('admin.banners.index');
+        $banners = DB::table('banners')->paginate(8);
+        return view('admin.banners.index', compact('banners'));
     }
 
     /**
@@ -34,7 +40,23 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $currentTime = Carbon::now()->timestamp;
+        $imageName = $request->titulo;
+        $imageExtension = $request->file('imagen')->extension();
+        $imagen = $request->file('imagen')->storeAs('imagenesBanner',$imageName.$currentTime.'.'.$imageExtension);
+        $url = 'http://localhost/ecommerce/storage/app/';
+        $url = $url.$imagen;
+
+        DB::table('banners')->insert([
+            'imagen' => $url,
+            'titulo' => $request->titulo,
+            'posicion' => $request->posicion,
+            'status' => 0,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        return redirect('banner')->with('Mensaje', 'Banner agregado con exito');
     }
 
     /**
@@ -56,7 +78,7 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -79,6 +101,8 @@ class BannerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $getImage = DB::table('banners')->where('idBanner', $id)->first();
+        $imagen = str_replace('http://localhost/ecommerce/storage/app/','',$getImage->imagen);
+        //Storage::disk('app')->delete();
     }
 }

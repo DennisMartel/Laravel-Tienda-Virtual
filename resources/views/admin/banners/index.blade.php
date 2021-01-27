@@ -1,116 +1,94 @@
 @extends('layouts.panel')
-
 @section('title', 'banners')
-<!-- DataTables -->
-<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 @section('content')
-<div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          {{-- <h1 class="m-0 text-dark">Administración de Banners</h1> --}}
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Banner</li>
-          </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
-  </div>
-  <!-- /.content-header -->
-
-<div class="card">
-    <div class="card-header">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-flat btn-sm float-right" data-toggle="modal" data-target="#exampleModal">
-            Agregar Banner
-        </button>
-  
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                ...
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
+<section class="content">
+    <div class="container-fuid">
+        <div class="content-header">
+            <div class="container-fluid">
+              <div class="row mb-2">
+                <div class="col-sm-6">
+                  <h4 class="m-0 text-dark">Administración de Banners</h4>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Banner</li>
+                  </ol>
+                </div><!-- /.col -->
+              </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+          </div>
+          <!-- /.content-header -->
+        
+        <div class="card card-success card-outline">
+            <div class="card-body">
+                <h4 class="text-muted font-weight-normal">Registro de banners</h4>
+                <form action="" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="imagen">Banner</label>
+                                <input type="file" name="imagen" id="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="titulo">Titulo</label>
+                                <input type="text" name="titulo" id="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="posicion">Posición</label>
+                                <select name="posicion" id="" class="form-control">
+                                    <option value="1">Banner</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-end align-items-center">
+                        <button type="submit" class="btn btn-flat btn-success btn-sm mr-1">Guardar <i class="fas fa-save"></i></button>
+                        <button type="reset" class="btn btn-flat btn-info btn-sm">Limpiar <i class="fas fa-eraser"></i></button>
+                    </div>
+                </form>
+                <hr>
+                <h4 class="text-muted font-weight-normal">Listado de Banners</h4>
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Titulo</th>
+                            <th>Posición</th>
+                            <th>Estado</th>
+                            <th>Creado</th>
+                            <th colspan="3">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($banners as $banner)
+                        <tr>
+                            <td><img src="{{ $banner->imagen }}" alt="{{ $banner->titulo }}" width="50"></td>
+                            <td>{{ $banner->titulo }}</td>
+                            <td>{{ $banner->posicion }}</td>
+                            <td>{{ $banner->status }}</td>
+                            <td>{{ $banner->created_at }}</td>
+                            <td><a href="" class="btn btn-flat btn-secondary btn-sm"><i class="fas fa-eye"></i></a></td>
+                            <td>
+                                <form action="{{ route('banner.destroy', $banner->idBanner) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-flat btn-danger btn-sm mr-1"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                            </td>
+                            <td><a href="" class="btn btn-flat btn-info btn-sm"><i class="fas fa-edit"></i></a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <div class="card-body">
-        <table id="table" class="table table-bordered table-hover table-striped">
-            <thead>
-                <tr>
-                    <th>Imagen</th>
-                    <th>Titulo</th>
-                    <th>Posición</th>
-                    <th>Estado</th>
-                    <th>Creado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Trident</td>
-                    <td>Internet Explorer 4.0</td>
-                    <td>Win 95+</td>
-                    <td>4</td>
-                    <td>X</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+</section>
 
-<!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-<!-- DataTables -->
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script>
-
-    $('#table').DataTable({
-        language: {
-            "decimal": "",
-            "emptyTable": "No hay información",
-            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-            "infoPostFix": "",
-            "thousands": ",",
-            "lengthMenu": "Mostrar _MENU_ Entradas",
-            "loadingRecords": "Cargando...",
-            "processing": "Procesando...",
-            "search": "Buscar:",
-            "zeroRecords": "Sin resultados encontrados",
-            "paginate": {
-                "first": "Primero",
-                "last": "Ultimo",
-                "next": "Siguiente",
-                "previous": "Anterior"
-            }
-        },
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-
-</script>
 @endsection
