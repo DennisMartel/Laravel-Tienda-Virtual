@@ -7,7 +7,7 @@
             <div class="container-fluid">
               <div class="row mb-2">
                 <div class="col-sm-6">
-                  <h4 class="m-0 text-dark">Administración de Banners</h4>
+                  <h4 class="m-0 text-dark">Sección de Banners</h4>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
@@ -22,28 +22,43 @@
         
         <div class="card card-success card-outline">
             <div class="card-body">
+                @if(session('Mensaje'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Operación Exitosa </strong>{{ session('Mensaje') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <h4 class="text-muted font-weight-normal">Registro de banners</h4>
                 <form action="" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="imagen">Banner</label>
-                                <input type="file" name="imagen" id="" class="form-control">
+                                <input type="file" name="imagen" id="" class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="titulo">Titulo</label>
-                                <input type="text" name="titulo" id="" class="form-control">
+                                <input type="text" name="titulo" id="" class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="posicion">Posición</label>
-                                <select name="posicion" id="" class="form-control">
+                                <select name="posicion" id="" class="form-control" required>
                                     <option value="1">Banner</option>
+                                    <option value="2">Anuncio Publicitario</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="url">Url</label>
+                                <input type="text" name="enlace" id="" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -90,5 +105,4 @@
         </div>
     </div>
 </section>
-
 @endsection

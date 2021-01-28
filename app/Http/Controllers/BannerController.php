@@ -51,6 +51,7 @@ class BannerController extends Controller
             'imagen' => $url,
             'titulo' => $request->titulo,
             'posicion' => $request->posicion,
+            'enlace' => $request->enlace,
             'status' => 0,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
@@ -103,6 +104,8 @@ class BannerController extends Controller
     {
         $getImage = DB::table('banners')->where('idBanner', $id)->first();
         $imagen = str_replace('http://localhost/ecommerce/storage/app/','',$getImage->imagen);
-        //Storage::disk('app')->delete();
+        Storage::disk('local')->delete('app', $imagen);
+        DB::table('banners')->where('idBanner', $id)->delete();
+        return redirect('banner')->with('Mensaje', 'Banner eliminado exitosamente');
     }
 }
