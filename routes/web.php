@@ -14,15 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
 
+// User Web Routes
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Rutas Administrador
-Route::group(['middleware' => ['role:admin']], function() {
+// Admin Routes
+Route::group(['middleware' => ['role:administrador']], function() {
     Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('banner', App\Http\Controllers\BannerController::class);
 });
