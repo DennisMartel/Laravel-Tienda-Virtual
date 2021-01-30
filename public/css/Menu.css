@@ -12,15 +12,17 @@ strong {
 }
 label, a {
     text-decoration: none !important;
-    color: #555;
+    color: #555 ;
 }
+
 ul {
     list-style: none;
     padding: 0;
 }
+
 header {
     box-shadow: 2px 9px 49px -17px rgba(0, 0, 0, 0.3);
-    position: sticky;
+    position: relative;
     top: 0;
     width: 100%;
     z-index: 10;
@@ -34,7 +36,7 @@ header {
     align-items: center;
     display: flex;
     height: 30px;
-    justify-content: flex-end;
+    justify-content: center;
     margin: 0 auto;
     max-width: 1300px;
     width: 100%;
@@ -48,15 +50,15 @@ header {
     margin-right: 5px;
 }
 .container {
-    align-items: center;
-    display: flex;
-    height: 70px;
+    align-items: center !important;
+    display: flex !important;
+    height: 70px !important;
     justify-content: space-between;
-    margin: 0 auto;
-    max-width: 1300px;
-    padding: 0 15px;
-    position: relative;
-    width: 100%;
+    margin: 0 auto !important;
+    max-width: 1300px !important;
+    padding: 0 15px !important;
+    position: relative !important;
+    width: 100% !important;
 }
 .container .logo {
     color: #545bc4;
@@ -139,12 +141,12 @@ header {
     padding: 0 15px;
 }
 .container .nav-content .nav-content-list .nav-content-item {
-    align-items: center;
-    display: flex;
-    height: 40px;
-    margin: 0 5px;
-    position: relative;
-    transition: 100ms all linear 0s;
+    align-items: center !important;
+    display: flex !important;
+    height: 40px !important;
+    margin: 0 5px !important;
+    position: relative !important;
+    transition: 100ms all linear 0s !important;
 }
 @media (max-width: 991px) {
     .container .nav-content .nav-content-list .nav-content-item {
@@ -167,6 +169,11 @@ header {
     display: flex;
     position: relative;
 }
+
+.container .nav-content .nav-content-list .nav-content-item .open-menu-login-account i {
+    font-size: 20px;
+    margin-top: 20px;
+}
 .container .nav-content .nav-content-list .nav-content-item .input-menu {
     display: none;
 }
@@ -182,7 +189,7 @@ header {
     overflow: hidden;
     position: absolute;
     right: 0;
-    top: 28px;
+    top: 55px;
     transition: 100ms all linear 0s;
     width: 200px;
     z-index: 10;
@@ -260,6 +267,7 @@ header {
 }
 .nav-container .nav-row .nav-row-list .nav-row-list-link:hover {
     background: #e1e1e1;
+    margin-top: -8px;
     width: 100%;
 }
 .nav-container .featured-category {

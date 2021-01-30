@@ -14,7 +14,6 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/af562a2a63.js" crossorigin="anonymous"></script>
@@ -22,6 +21,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Menu.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/Home.css') }}" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+<style>
+
+</style>
 </head>
 <body>
     {{-- <div id="app">
@@ -87,8 +94,9 @@
   <!-- contact content -->
   <div class="header-content-top">
     <div class="content">
-      <span><i class="fas fa-phone"></i> (+503) 6178-4278</span>
-      <span><i class="fas fa-envelope"></i>marteldennis05gmail.com</span>
+      <span>Envio gratis en compras mayores a $40.00. Recibe en 24 horas</span>
+      {{-- <span><i class="fas fa-phone"></i> (+503) 6178-4278</span>
+      <span><i class="fas fa-envelope"></i>marteldennis05gmail.com</span> --}}
     </div>
   </div>
   <!-- / contact content -->
@@ -103,7 +111,7 @@
             <input class="input-open-search" id="open-search" type="checkbox" name="menu" />
     <div class="search">
       <button class="button-search"><i class="fas fa-search"></i></button>
-      <input type="text" placeholder="What are you looking for?" class="input-search"/>
+      <input type="text" placeholder="Buscar producto" class="input-search"/>
     </div>
     </label>
     <!-- // search -->
@@ -115,7 +123,7 @@
 
             <input class="input-menu" id="open-menu-login-account" type="checkbox" name="menu" />
 
-            <i class="fas fa-user-circle"></i><!--<span class="login-text">Hello, Sign in <strong>-->Crear Cuenta</strong></span> <span class="item-arrow"></span>
+            <i class="fas fa-user-circle"></i><!--<span class="login-text">Hello, Sign in <strong>--></strong></span> <span class="item-arrow"></span>
 
             <!-- submenu -->
             <ul class="login-list">
@@ -125,8 +133,8 @@
               </label>
             </ul>
         </li>
-        <li class="nav-content-item"><a class="nav-content-link" href="https://www.cupcom.com.br/"><i class="fas fa-heart"></i></a></li>
-        <li class="nav-content-item"><a class="nav-content-link" href="https://www.cupcom.com.br/"><i class="fas fa-shopping-cart"></i></a></li>
+        <li class="nav-content-item"><a class="nav-content-link" href=""><i class="fas fa-heart"></i></a></li>
+        <li class="nav-content-item"><a class="nav-content-link" href=""><i class="fas fa-shopping-cart"></i></a></li>
         <!-- call to action -->
       </ul>
     </nav>
@@ -167,17 +175,19 @@
     </nav>
     <nav class="featured-category">
       <ul class="nav-row">
-        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Smartphones</a></li>
-        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">furniture</a></li>
-        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Toys</a></li>
-        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Computing</a></li>
-        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Games</a></li>
-        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Automotive</a></li>
+        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Damas</a></li>
+        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Caballeros</a></li>
+        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Niños</a></li>
+        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Niñas</a></li>
+        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Gamers</a></li>
+        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Ecoplus</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
-
+<div class="container-fluid mt-3">
+  @yield('content')
+</div>
 </body>
 </html>
