@@ -26,6 +26,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
+    <!-- Owl-Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
 <style>
 
 </style>
@@ -90,7 +96,7 @@
             @yield('content')
         </main>
     </div> --}}
-<header>
+<header style="position: fixed;">
   <!-- contact content -->
   <div class="header-content-top">
     <div class="content">
@@ -127,9 +133,18 @@
 
             <!-- submenu -->
             <ul class="login-list">
-              <li class="login-list-item"><a href="">My account</a></li>
-              <li class="login-list-item"><a href="">Create account</a></li>
-              <li class="login-list-item"><a href="">logout</a></li>
+              @guest
+                <li class="login-list-item"><a href="{{ url('login') }}" style="color: #555; font-weight: 700;">Identificate</a></li>
+              @else
+                <li class="login-list-item"><a href="" style="color: #555; font-weight: 700;">Hola {{ auth::user()->name }}</a></li>
+                <li class="login-list-item">
+                  <form action="{{ url('logout') }}" method="post" onsubmit="e.preventDefault()">
+                    @csrf
+                    <button type="submit" class="btn btn-danger btn-block w-100">Salir</button>
+                  </form>
+                  {{-- <a href="{{ url('logout') }}" style="color: #555; font-weight: 700;">Salir</a> --}}
+                </li>
+              @endguest
               </label>
             </ul>
         </li>
@@ -144,50 +159,177 @@
     <nav class="all-category-nav">
       <label class="open-menu-all" for="open-menu-all">
         <input class="input-menu-all" id="open-menu-all" type="checkbox" name="menu-open" />
-        <span class="all-navigator"><i class="fas fa-bars"></i> <span>All category</span> <i class="fas fa-angle-down"></i>
+        <span class="all-navigator"><i class="fas fa-bars"></i> <span>Categorias Populares</span> <i class="fas fa-angle-down"></i>
           <i class="fas fa-angle-up"></i>
         </span>
 
         <ul class="all-category-list">
-          <li class="all-category-list-item"><a href="https://www.cupcom.com.br/" class="all-category-list-link">Smartphones<i class="fas fa-angle-right"></i></a>
-            <div class="category-second-list">
-              <ul class="category-second-list-ul">
-                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Iphone 10</a></li>
-                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Galaxy Note 10</a></li>
-                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Motorola One </a></li>
-                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Galaxy A80 </a></li>
-                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Galaxy M </a></li>
-                <li class="category-second-item"><a href="https://www.cupcom.com.br/">Huaway P30 </a></li>
-              </ul>
-
-              <div class="img-product-menu"><img src="https://i.ibb.co/Vvndkmy/banner.jpg"></div>
-              </div>
-          </li>
-          <li class="all-category-list-item"><a href="https://www.cupcom.com.br/" class="all-category-list-link">Furniture <i class="fas fa-angle-right"></i></a></li>
-          <li class="all-category-list-item"><a href="https://www.cupcom.com.br/" class="all-category-list-link">Toys<i class="fas fa-angle-right"></i></a></li>
-          <li class="all-category-list-item"><a href="https://www.cupcom.com.br/" class="all-category-list-link">Computing<i class="fas fa-angle-right"></i></a></li>
-          <li class="all-category-list-item"><a href="https://www.cupcom.com.br/" class="all-category-list-link">Games<i class="fas fa-angle-right"></i></a></li>
-          <li class="all-category-list-item"><a href="" class="all-category-list-link">Automotive<i class="fas fa-angle-right"></i></a></li>
-
+            @php
+            $menuCat = DB::table('categorias')->get();
+            $menuSubCat = DB::table('subcategorias')->get();
+            @endphp
+            @foreach($menuCat as $mCat)
+            <li class="all-category-list-item"><a href="" class="all-category-list-link">{{ $mCat->titulo }}<i class="fas fa-angle-right"></i></a>
+                <div class="category-second-list">
+                  <ul class="category-second-list-ul">
+                    @foreach($menuSubCat as $menuSC)
+                    <li class="category-second-item"><a href="{{ url('productoSubCategoria', $menuSC->idSubCategoria) }}">{{ $menuSC->titulo }}</a></li>
+                    @endforeach
+                  </ul>
+    
+                  {{-- <div class="img-product-menu"><img src="https://i.ibb.co/Vvndkmy/banner.jpg"></div>
+                  </div> --}}
+              </li>
+            @endforeach
         </ul>
       </label>
 
     </nav>
     <nav class="featured-category">
       <ul class="nav-row">
-        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Damas</a></li>
-        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Caballeros</a></li>
-        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Niños</a></li>
-        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Niñas</a></li>
-        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Gamers</a></li>
-        <li class="nav-row-list"><a href="https://www.cupcom.com.br/" class="nav-row-list-link">Ecoplus</a></li>
+        @php
+            $menus = DB::table('departamentos')->where('status', 0)->get();
+        @endphp
+        @foreach($menus as $menu)
+            <li class="nav-row-list"><a href="{{ url('productoDepartamento', $menu->idDepartamento) }}" class="nav-row-list-link">{{ $menu->titulo }}</a></li>
+        @endforeach        
       </ul>
     </nav>
   </div>
 </header>
 
-<div class="container-fluid mt-3">
+<div class="container-fluid my-5">
   @yield('content')
 </div>
+
+<footer class="footer-section">
+  <div class="container-fluid">
+      <div class="footer-cta pt-5 pb-5">
+          <div class="row">
+              <div class="col-xl-4 col-md-4 mb-30">
+                  <div class="single-cta">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <div class="cta-text">
+                          <h4>Find us</h4>
+                          <span>1010 Avenue, sw 54321, chandigarh</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xl-4 col-md-4 mb-30">
+                  <div class="single-cta">
+                      <i class="fas fa-phone"></i>
+                      <div class="cta-text">
+                          <h4>Call us</h4>
+                          <span>9876543210 0</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xl-4 col-md-4 mb-30">
+                  <div class="single-cta">
+                      <i class="far fa-envelope-open"></i>
+                      <div class="cta-text">
+                          <h4>Mail us</h4>
+                          <span>mail@info.com</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="footer-content pt-5 pb-5">
+          <div class="row">
+              <div class="col-xl-4 col-lg-4 mb-50">
+                  <div class="footer-widget">
+                      <div class="footer-logo">
+                          <a href="index.html"><strong class="logo"><i class="fas fa-heart"></i></strong></a>
+                      </div>
+                      <div class="footer-text">
+                          <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
+                          elit,Lorem ipsum dolor sit amet.</p>
+                      </div>
+                      <div class="footer-social-icon">
+                          <span>Follow us</span>
+                          <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                          <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
+                          <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                  <div class="footer-widget">
+                      <div class="footer-widget-heading">
+                          <h3>Useful Links</h3>
+                      </div>
+                      <ul>
+                          <li><a href="#">Home</a></li>
+                          <li><a href="#">about</a></li>
+                          <li><a href="#">services</a></li>
+                          <li><a href="#">portfolio</a></li>
+                          <li><a href="#">Contact</a></li>
+                          <li><a href="#">About us</a></li>
+                          <li><a href="#">Our Services</a></li>
+                          <li><a href="#">Expert Team</a></li>
+                          <li><a href="#">Contact us</a></li>
+                          <li><a href="#">Latest News</a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                  <div class="footer-widget">
+                      <div class="footer-widget-heading">
+                          <h3>Subscribe</h3>
+                      </div>
+                      <div class="footer-text mb-25">
+                          <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
+                      </div>
+                      <div class="subscribe-form">
+                          <form action="#">
+                              <input type="text" placeholder="Email Address">
+                              <button><i class="fab fa-telegram-plane"></i></button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="copyright-area">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                  <div class="copyright-text">
+                      <p>Copyright &copy; 2018, All Right Reserved <a href="https://codepen.io/anupkumar92/">Anup</a></p>
+                  </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                  <div class="footer-menu">
+                      <ul>
+                          <li><a href="#">Home</a></li>
+                          <li><a href="#">Terms</a></li>
+                          <li><a href="#">Privacy</a></li>
+                          <li><a href="#">Policy</a></li>
+                          <li><a href="#">Contact</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 2000,
+                autoplayHoverPause: true,
+                items: 1
+            });
+        });
+    </script>
 </body>
 </html>

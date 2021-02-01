@@ -1,5 +1,7 @@
 @extends('layouts.panel')
-@section('title', 'banners')
+
+@section('title', 'departamentos')
+
 @section('content')
 <section class="content">
     <div class="container-fuid">
@@ -7,12 +9,12 @@
             <div class="container-fluid">
               <div class="row mb-2">
                 <div class="col-sm-6">
-                  <h4 class="m-0 text-dark">Sección de Banners</h4>
+                  <h4 class="m-0 text-dark">Sección de Departamentos</h4>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Banner</li>
+                    <li class="breadcrumb-item active">Departamentos</li>
                   </ol>
                 </div><!-- /.col -->
               </div><!-- /.row -->
@@ -30,35 +32,20 @@
                         </button>
                     </div>
                 @endif
-                <h4 class="text-muted font-weight-normal">Registro de banners</h4>
-                <form action="{{ route('banner.store') }}" method="post" enctype="multipart/form-data">
+                <h4 class="text-muted font-weight-normal">Registro de Departamentos</h4>
+                <form action="{{ route('departamentos.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="imagen">Banner</label>
+                                <label for="imagen">Portada</label>
                                 <input type="file" name="imagen" id="" class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="titulo">Titulo</label>
                                 <input type="text" name="titulo" id="" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="posicion">Posición</label>
-                                <select name="posicion" id="" class="form-control" required>
-                                    <option value="1">Banner</option>
-                                    <option value="2">Anuncio Publicitario</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="url">Url</label>
-                                <input type="text" name="enlace" id="" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -74,23 +61,21 @@
                         <tr>
                             <th>Imagen</th>
                             <th>Titulo</th>
-                            <th>Posición</th>
                             <th>Estado</th>
                             <th>Creado</th>
                             <th colspan="3">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($banners as $banner)
+                        @foreach ($deps as $d)
                         <tr>
-                            <td><img src="{{ $banner->imagen }}" alt="{{ $banner->titulo }}" width="50"></td>
-                            <td>{{ $banner->titulo }}</td>
-                            <td>{{ $banner->posicion }}</td>
-                            <td>{{ $banner->status }}</td>
-                            <td>{{ $banner->created_at }}</td>
+                            <td><img src="{{ $d->imagen }}" alt="{{ $d->titulo }}" width="50"></td>
+                            <td>{{ $d->titulo }}</td>
+                            <td>{{ $d->status }}</td>
+                            <td>{{ $d->created_at }}</td>
                             <td><a href="" class="btn btn-flat btn-secondary btn-sm"><i class="fas fa-eye"></i></a></td>
                             <td>
-                                <form action="{{ route('banner.destroy', $banner->idBanner) }}" method="post">
+                                <form action="{{ route('departamentos.destroy', $d->idDepartamento) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-flat btn-danger btn-sm mr-1"><i class="fas fa-trash-alt"></i></button>
@@ -104,5 +89,5 @@
             </div>
         </div>
     </div>
-</section>
+</section> 
 @endsection

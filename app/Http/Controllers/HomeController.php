@@ -2,20 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -23,6 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $getBanner = DB::table('banners')->get();
+        return view('home', compact('getBanner'));
     }
 }
