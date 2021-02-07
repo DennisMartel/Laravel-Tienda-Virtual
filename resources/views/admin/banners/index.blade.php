@@ -1,108 +1,58 @@
 @extends('layouts.panel')
-@section('title', 'banners')
+
+@section('title', 'Banner')
+
 @section('content')
-<section class="content">
-    <div class="container-fuid">
-        <div class="content-header">
-            <div class="container-fluid">
-              <div class="row mb-2">
-                <div class="col-sm-6">
-                  <h4 class="m-0 text-dark">Sección de Banners</h4>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                  <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Banner</li>
-                  </ol>
-                </div><!-- /.col -->
-              </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-          </div>
-          <!-- /.content-header -->
-        
-        <div class="card card-success card-outline">
+<div class="row">
+    <div class="col-12">
+        @if(session('Mensaje'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Operción exitosa!</strong> {{ session('Mensaje') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+        <div class="card">
+            <div class="card-header bg-dark">
+                <h3 class="card-title">Listado de Banners</h3>
+                <!-- Button trigger modal -->
+                <a href="{{ route('banner.create') }}" class="btn btn-flat float-right text-white" style="background: #545bc4;">
+                    Agregar Nuevo Banner
+                </a>   
+            </div>
+            <!-- /.card-header -->
             <div class="card-body">
-                @if(session('Mensaje'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Operación Exitosa </strong>{{ session('Mensaje') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
-                <h4 class="text-muted font-weight-normal">Registro de banners</h4>
-                <form action="{{ route('banner.store') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="imagen">Banner</label>
-                                <input type="file" name="imagen" id="" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="titulo">Titulo</label>
-                                <input type="text" name="titulo" id="" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="posicion">Posición</label>
-                                <select name="posicion" id="" class="form-control" required>
-                                    <option value="1">Banner</option>
-                                    <option value="2">Anuncio Publicitario</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="url">Url</label>
-                                <input type="text" name="enlace" id="" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-row justify-content-end align-items-center">
-                        <button type="submit" class="btn btn-flat btn-success btn-sm mr-1">Guardar <i class="fas fa-save"></i></button>
-                        <button type="reset" class="btn btn-flat btn-info btn-sm">Limpiar <i class="fas fa-eraser"></i></button>
-                    </div>
-                </form>
-                <hr>
-                <h4 class="text-muted font-weight-normal">Listado de Banners</h4>
-                <table id="example" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Portada</th>
+                        <th>Titulo</th>
+                        <th>Estado</th>
+                        <th>Fecha/Hora</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($banners as $banner)
                         <tr>
-                            <th>Imagen</th>
-                            <th>Titulo</th>
-                            <th>Posición</th>
-                            <th>Estado</th>
-                            <th>Creado</th>
-                            <th colspan="3">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($banners as $banner)
-                        <tr>
-                            <td><img src="{{ $banner->imagen }}" alt="{{ $banner->titulo }}" width="50"></td>
+                            <td><img src="{{ $banner->imagen }}" alt="{{ $banner->titulo }}" width="100"></td>
                             <td>{{ $banner->titulo }}</td>
-                            <td>{{ $banner->posicion }}</td>
-                            <td>{{ $banner->status }}</td>
+                            <td>@if($banner->status == 0)<span class="badge badge-success">Activo</span>@else<span class="badge badge-danger">Inactivo</span>@endif</td>
                             <td>{{ $banner->created_at }}</td>
-                            <td><a href="" class="btn btn-flat btn-secondary btn-sm"><i class="fas fa-eye"></i></a></td>
                             <td>
-                                <form action="{{ route('banner.destroy', $banner->idBanner) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-flat btn-danger btn-sm mr-1"><i class="fas fa-trash-alt"></i></button>
+                                <form action="{{ route('banner.destroy', $banner->idBanner) }}" class="formulario-eliminar" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></button>
                                 </form>
                             </td>
-                            <td><a href="" class="btn btn-flat btn-info btn-sm"><i class="fas fa-edit"></i></a></td>
                         </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
-</section>
+</div>
+</div>
 @endsection

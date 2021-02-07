@@ -137,6 +137,9 @@
                 <li class="login-list-item"><a href="{{ url('login') }}" style="color: #555; font-weight: 700;">Identificate</a></li>
               @else
                 <li class="login-list-item"><a href="" style="color: #555; font-weight: 700;">Hola {{ auth::user()->name }}</a></li>
+                @can('administrador')
+                <li class="login-list-item"><a href="{{ url('dashboard') }}" style="color: #555; font-weight: 700;">Administración</a></li>
+                @endcan
                 <li class="login-list-item">
                   <form action="{{ url('logout') }}" method="post" onsubmit="e.preventDefault()">
                     @csrf
@@ -165,21 +168,10 @@
 
         <ul class="all-category-list">
             @php
-            $menuCat = DB::table('categorias')->get();
-            $menuSubCat = DB::table('subcategorias')->get();
+            $menuCategorias = DB::table('categorias')->where('status',0)->get();
             @endphp
-            @foreach($menuCat as $mCat)
-            <li class="all-category-list-item"><a href="" class="all-category-list-link">{{ $mCat->titulo }}<i class="fas fa-angle-right"></i></a>
-                <div class="category-second-list">
-                  <ul class="category-second-list-ul">
-                    @foreach($menuSubCat as $menuSC)
-                    <li class="category-second-item"><a href="{{ url('productoSubCategoria', $menuSC->idSubCategoria) }}">{{ $menuSC->titulo }}</a></li>
-                    @endforeach
-                  </ul>
-    
-                  {{-- <div class="img-product-menu"><img src="https://i.ibb.co/Vvndkmy/banner.jpg"></div>
-                  </div> --}}
-              </li>
+            @foreach($menuCategorias as $menuCategoria)
+                <li class="all-category-list-item"><a href="{{ url('allCategory', $menuCategoria->idCategoria) }}" class="all-category-list-link">{{ $menuCategoria->titulo }}<i class="far fa-circle"></i></a></li>
             @endforeach
         </ul>
       </label>
@@ -191,7 +183,7 @@
             $menus = DB::table('departamentos')->where('status', 0)->get();
         @endphp
         @foreach($menus as $menu)
-            <li class="nav-row-list"><a href="{{ url('productoDepartamento', $menu->idDepartamento) }}" class="nav-row-list-link">{{ $menu->titulo }}</a></li>
+            <li class="nav-row-list"><a href="{{ url('allDepartment', $menu->idDepartamento) }}" class="nav-row-list-link">{{ $menu->titulo }}</a></li>
         @endforeach        
       </ul>
     </nav>

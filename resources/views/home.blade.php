@@ -6,7 +6,7 @@
     <div class="carousel-inner">
         @foreach($getBanner as $key => $banner)
         <div class="carousel-item {{ $key == 0 ? 'active' : ''}}">
-            <img src="{{ $banner->imagen }}" class="d-block w-100" alt="{{ $banner->titulo }}"  style="border-radius: 10px; height: 350px;">
+            <img src="{{ $banner->imagen }}" class="d-block w-100 img-fluid" alt="{{ $banner->titulo }}"  style="border-radius: 10px; height: 350px;">
         </div>
         @endforeach
     </div>

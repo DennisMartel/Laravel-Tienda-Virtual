@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CategoriaController extends Controller
 {
@@ -13,7 +16,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $categorias = DB::table('categorias')->get();
+        return view('admin.categorias.index', compact('categorias'));
     }
 
     /**
@@ -23,7 +27,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        $departamentos = DB::table('departamentos')->get();
+        return view('admin.categorias.create', compact('departamentos'));
     }
 
     /**
@@ -34,7 +39,23 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $currentTime = Carbon::now()->timestamp;
+        $imageName = str_replace(" ","",$request->titulo);
+        $imageExtension = $request->file('imagen')->extension();
+        $imagen = $request->file('imagen')->storeAs('categoriaImagenes',$imageName.$currentTime.'.'.$imageExtension);
+        $url = 'http://localhost/ecommerce/storage/app/';
+        $url = $url.$imagen;
+
+        DB::table('categorias')->insert([
+            'imagen' => $url,
+            'titulo' => $request->titulo,
+            'status' => $request->status,
+            'idDepartamento' => $request->idDepartamento,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        return redirect('categorias')->with('agregado', 'ok');
     }
 
     /**
@@ -79,6 +100,10 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $getImage = DB::table('categorias')->where('idCategoria', $id)->first();
+        $imagen = str_replace('http://localhost/ecommerce/storage/app/','',$getImage->imagen);
+        Storage::disk('local')->delete('app', $imagen);
+        DB::table('categorias')->where('idcategoria', $id)->delete();
+        return redirect('categorias')->with('eliminar', 'ok');
     }
 }

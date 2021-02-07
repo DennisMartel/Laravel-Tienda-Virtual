@@ -16,8 +16,8 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        $deps = DB::table('departamentos')->paginate(8);
-        return view('admin.departamentos.index', compact('deps'));
+        $departamentos = DB::table('departamentos')->paginate(8);
+        return view('admin.departamentos.index', compact('departamentos'));
     }
 
     /**
@@ -27,7 +27,7 @@ class DepartamentoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.departamentos.create');
     }
 
     /**
@@ -39,7 +39,7 @@ class DepartamentoController extends Controller
     public function store(Request $request)
     {
         $currentTime = Carbon::now()->timestamp;
-        $imageName = $request->titulo;
+        $imageName = str_replace(" ","",$request->titulo);
         $imageExtension = $request->file('imagen')->extension();
         $imagen = $request->file('imagen')->storeAs('departamentoImagenes',$imageName.$currentTime.'.'.$imageExtension);
         $url = 'http://localhost/ecommerce/storage/app/';
@@ -48,12 +48,12 @@ class DepartamentoController extends Controller
         DB::table('departamentos')->insert([
             'imagen' => $url,
             'titulo' => $request->titulo,
-            'status' => 0,
+            'status' => $request->status,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
 
-        return redirect('departamentos')->with('Mensaje', 'Departamento agregado con exito');
+        return redirect('departamentos')->with('agregado', 'ok');
     }
 
     /**
@@ -102,6 +102,6 @@ class DepartamentoController extends Controller
         $imagen = str_replace('http://localhost/ecommerce/storage/app/','',$getImage->imagen);
         Storage::disk('local')->delete('app', $imagen);
         DB::table('departamentos')->where('idDepartamento', $id)->delete();
-        return redirect('departamentos')->with('Mensaje', 'Departamento eliminado exitosamente');
+        return redirect('departamentos')->with('eliminar', 'ok');
     }
 }

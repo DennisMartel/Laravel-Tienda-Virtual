@@ -20,10 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 // User Web Routes
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Admin Routes
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['role:administrador']], function() {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/banner', App\Http\Controllers\BannerController::class);
     Route::resource('/departamentos', App\Http\Controllers\DepartamentoController::class);
