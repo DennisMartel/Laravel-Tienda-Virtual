@@ -24,7 +24,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/'
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Admin Routes
-Route::group(['middleware' => ['role:administrador']], function() {
+Route::group(['middleware' => ['role:admin']], function() {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/banner', App\Http\Controllers\BannerController::class);
     Route::resource('/departamentos', App\Http\Controllers\DepartamentoController::class);
