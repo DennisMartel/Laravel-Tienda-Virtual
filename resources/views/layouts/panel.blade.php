@@ -27,7 +27,7 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark" style="background-color: #545bc4;">
+  <nav class="main-header navbar navbar-expand navbar-dark bg-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -152,9 +152,9 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" >
     <!-- Brand Logo -->
-    <a href="{{ url('dashboard') }}" class="brand-link" style="background-color: #545bc4;">
+    <a href="{{ url('dashboard') }}" class="brand-link">
       <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light"> </span>
+      <span class="brand-text font-weight-light">Tienda Virtual</span>
     </a>
 
     <!-- Sidebar -->
@@ -177,8 +177,28 @@
           <li class="nav-item has-treeview">
             <a href="{{ url('dashboard') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Dashboard</p>
+              <p>Panel de Control</p>
             </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>Configuraciones <i class="fas fa-angle-left right"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Mi perfil</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Datos Empresa</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="" class="nav-link">
@@ -188,33 +208,27 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="" class="nav-link">
-                  <i class="fas fa-user-circle nav-icon"></i>
-                  <p>Mi perfil</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="fas fa-user-cog nav-icon"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Usuarios</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="" class="nav-link">
-                  <i class="fas fa-user-shield nav-icon"></i>
-                  <p>Administradores</p>
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Roles y Permisos</p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="" class="nav-link">
-              <i class="nav-icon fas fa-store"></i>
+              <i class="nav-icon fas fa-boxes"></i>
               <p>Inventario <i class="right fas fa-angle-left"></i></p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="" class="nav-link">
-                  <i class="fas fa-tshirt nav-icon"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Productos</p>
                 </a>
               </li>
@@ -231,37 +245,37 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="" class="nav-link">
-                  <i class="fas fa-clock nav-icon"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Actuales</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="" class="nav-link">
-                  <i class="fas fa-calendar-times nav-icon"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Pendientes</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="" class="nav-link">
-                  <i class="fas fa-box nav-icon"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Empaque</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="" class="nav-link">
-                  <i class="fas fa-route nav-icon"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Ruta</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="" class="nav-link">
-                  <i class="fas fa-calendar-check nav-icon"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Completas</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="" class="nav-link">
-                  <i class="fas fa-times nav-icon"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Canceladas</p>
                 </a>
               </li>
@@ -270,19 +284,19 @@
           <li class="nav-header">GESTOR DE SECCIONES</li>
           <li class="nav-item">
             <a href="{{ url('departamentos') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon far fa-circle"></i>
               <p>Departamentos</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ url('categorias') }}" class="nav-link">
-              <i class="nav-icon fas fa-tag"></i>
+              <i class="nav-icon far fa-circle"></i>
               <p>Categorias</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ url('banner') }}" class="nav-link">
-              <i class="nav-icon fas fa-star"></i>
+              <i class="nav-icon far fa-circle"></i>
               <p>Subcategorias</p>
             </a>
           </li>
@@ -327,7 +341,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <div class="container-fluid mt-4">
+    <div class="container-fluid">
       @yield('content')
     </div>
   </div>
