@@ -54,7 +54,7 @@ class BannerController extends Controller
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if($validator->fails()) {
-            return redirect()->withErrors($validator)->withInput();
+            return redirect('banner')->withErrors($validator)->withInput();
         } else {
             if($request->imagen != null) {
                 $currentTime = Carbon::now()->timestamp;
