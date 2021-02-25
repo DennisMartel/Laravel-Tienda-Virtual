@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Tienda Virtual') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -22,6 +22,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Menu.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Home.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.2/css/boxicons.min.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -96,89 +98,177 @@
             @yield('content')
         </main>
     </div> --}}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <div class="col-2">
-                <a class="navbar-brand" href="#">Tienda Virtual</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+
+    <div class="overlay"></div>
+
+    <div class="utility-nav d-none d-md-block">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <p class="small"><i class="bx bx-envelope"></i> tiendavirtual@gmail.com | <i class="bx bx-phone"></i> +(503) 6178-4278
+            </p>
+          </div>
+          <div class="col-12 col-md-6 text-right">
+            <p class="small">Por compras mayores a $50.00 envio gratis</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark main-menu" style="box-shadow:none">
+      <div class="container-fluid">
+        <button type="button" id="sidebarCollapse" class="btn btn-link d-block d-md-none">
+            <i class="bx bx-menu icon-single" style="color: white"></i>
+        </button>
+        <a class="navbar-brand" href="#"><h4 class="font-weight-bold">TiendaVirtual</h4></a>
+        <ul class="navbar-nav ml-auto d-block d-md-none">
+          <li class="nav-item">
+            <a class="btn btn-link" href="#"><i class="bx bxs-cart icon-single" style="color: white"></i> 
+                <span class="badge badge-success">3</span>
+            </a>
+          </li>
+        </ul>
+        <div class="collapse navbar-collapse">
+        <form class="form-inline my-2 my-lg-0 mx-auto">
+            <input class="form-control" type="search" placeholder="Search for products..." aria-label="Search">
+            <button class="btn btn-success my-2 my-sm-0 " type="submit"><i class="bx bx-search"></i></button>
+        </form>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="btn nav-link" href="#">
+                    <i class="bx bxs-cart icon-single" style="color: white"></i>
+                    <span class="badge badge-success">3</span>
+                </a>
+            </li>
+            <li class="nav-item ml-md-3">
+              <a class="btn btn-success" href="#"><i class="bx bxs-user-circle mr-1"></i>Identificate</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sub-menu">
+      <div class="container">
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">INICIO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">MODA</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">BEBÉS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">HOGAR</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">TECNOLOGÍA</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">JUGUETES</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Support</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Delivery Information</a>
+                <a class="dropdown-item" href="#">Privacy Policy</a>
+                <a class="dropdown-item" href="#">Terms & Conditions</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="search-bar bg-dark d-block d-md-none">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <form class="form-inline mb-3 mx-auto">
+              <input class="form-control" type="search" placeholder="Buscar productos" aria-label="Search">
+              <button class="btn btn-success" type="submit"><i class="bx bx-search"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-10 pl-0">
+              <a class="btn btn-success" href="#"><i class="bx bxs-user-circle mr-1"></i>Iniciar Sesión</a>
+            </div>
+            <div class="col-2 text-left">
+                <button type="button" id="sidebarCollapseX" class="btn btn-link">
+                    <i class="bx bx-x icon-single" style="color: white"></i>
                 </button>
             </div>
-            <div class="col-8">
-                <form class="form-inline my-2 my-lg-0 position-relative">
-                    <input class="form-control mr-sm-2 w-100" type="search" placeholder="Buscar Productos" aria-label="Search">
-                    <button class="btn btn-success position-absolute" style="right: 0" type="submit"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
-            <div class="col-2">
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown mx-2">
-                            <a class="nav-link active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-shopping-cart" style="font-size: 20px"></i><span class="badge badge-success">1</span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <li class="nav-item active mx-2">
-                        <a class="nav-link" href="#"><i class="fas fa-heart" style="font-size: 20px"></i></a>
-                        </li>
-                        <li class="nav-item active mx-2">
-                        <a class="nav-link" href="#"><i class="fas fa-user-circle" style="font-size: 20px"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>  
-      </nav>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <div class="col-12">
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item active">
-                        <a class="nav-link text-white mx-4" href="#">INICIO</a>
-                        </li>
-                        <li class="nav-item active">
-                        <a class="nav-link text-white mx-4" href="#">MODA</a>
-                        </li>
-                        <li class="nav-item active">
-                        <a class="nav-link text-white mx-4" href="#">TECNOLOGÍA</a>
-                        </li>
-                        <li class="nav-item active">
-                        <a class="nav-link text-white mx-4" href="#">BEBÉS</a>
-                        </li>
-                        <li class="nav-item active">
-                        <a class="nav-link text-white mx-4" href="#">JUGUETES</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>  
-      </nav>
+          </div>
+        </div>
+      </div>
+    
+      <ul class="list-unstyled components links">
+        <li>
+          <a href="#"><i class="bx bx-home mr-3"></i> Home</a>
+        </li>
+        <li>
+          <a href="#"><i class="bx bx-carousel mr-3"></i> Products</a>
+        </li>
+        <li>
+          <a href="#"><i class="bx bx-book-open mr-3"></i> Schools</a>
+        </li>
+        <li>
+          <a href="#"><i class="bx bx-crown mr-3"></i> Publishers</a>
+        </li>
+        <li>
+          <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="bx bx-help-circle mr-3"></i>
+                        Support</a>
+          <ul class="collapse list-unstyled" id="pageSubmenu">
+            <li>
+              <a href="#">Delivery Information</a>
+            </li>
+            <li>
+              <a href="#">Privacy Policy</a>
+            </li>
+            <li>
+              <a href="#">Terms & Conditions</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><i class="bx bx-phone mr-3"></i> Contact</a>
+        </li>
+      </ul>
+    
+      <h6 class="text-uppercase mb-1">Categorias</h6>
+      <ul class="list-unstyled components mb-3">
+        <li><a href="#">Category 1</a></li>
+        <li><a href="#">Category 1</a></li>
+        <li><a href="#">Category 1</a></li>
+        <li><a href="#">Category 1</a></li>
+        <li><a href="#">Category 1</a></li>
+        <li><a href="#">Category 1</a></li>
+      </ul>
+    
+      <ul class="social-icons">
+        <li><a href="#" target="_blank" title=""><i class="bx bxl-facebook-square"></i></a></li>
+        <li><a href="#" target="_blank" title=""><i class="bx bxl-twitter"></i></a></li>
+        <li><a href="#" target="_blank" title=""><i class="bx bxl-linkedin"></i></a></li>
+        <li><a href="#" target="_blank" title=""><i class="bx bxl-instagram"></i></a></li>
+      </ul>
+    
+    </nav>
 <div class="container-fluid my-2">
   @yield('content')
 </div>
 
-
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
-
-    <script>
-        $(document).ready(function () {
-
-            $('.owl-carousel').owlCarousel({
-                loop: true,
-                autoplay: true,
-                autoplayTimeout: 2000,
-                autoplayHoverPause: true,
-                items: 1
-            });
-        });
-    </script>
+<script src="{{ asset('js/Menu.js') }}"></script>
 </body>
 </html>
