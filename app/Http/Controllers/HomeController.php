@@ -18,4 +18,14 @@ class HomeController extends Controller
         $getBanner = DB::table('banners')->get();
         return view('home', compact('getBanner'));
     }
+
+    public function shop()
+    {
+        return view('shop');
+    }
+
+    public function cart()
+    {
+        return view('cart');
+    }
 }

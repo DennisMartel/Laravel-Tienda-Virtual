@@ -1,199 +1,295 @@
 @extends('layouts.app')
-
+@section('title', 'Inicio')
 @section('content')
-<!-- / Start Banner Section -->
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        @foreach($getBanner as $key => $banner)
-        <div class="carousel-item {{ $key == 0 ? 'active' : ''}}">
-            <img src="{{ $banner->imagen }}" class="d-block w-100 img-fluid" alt="{{ $banner->titulo }}"  style="border-radius: 10px; height: 350px;">
-        </div>
-        @endforeach
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-</div>
-<!-- / End Banner Section -->
 
-<h3 class="text-center font-weight-light text-muted my-4">Categorias Populares</h3>
-<div class="row mt-2">
-    <div class="col-2">
-        <div class="card shadow">
-            <div class="card-body">
-                <img src="https://www.kebuena.com.mx/wp-content/uploads/2019/12/disencc83o-sin-titulo-2.png" alt="" class="img-fluid">
-                <p class="text-center">Lentes</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-2">
-        <div class="card shadow">
-            <div class="card-body">
-                <img src="https://www.kebuena.com.mx/wp-content/uploads/2019/12/disencc83o-sin-titulo-2.png" alt="" class="img-fluid">
-                <p class="text-center">Lentes</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-2">
-        <div class="card shadow">
-            <div class="card-body">
-                <img src="https://www.kebuena.com.mx/wp-content/uploads/2019/12/disencc83o-sin-titulo-2.png" alt="" class="img-fluid">
-                <p class="text-center">Lentes</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-2">
-        <div class="card shadow">
-            <div class="card-body">
-                <img src="https://www.kebuena.com.mx/wp-content/uploads/2019/12/disencc83o-sin-titulo-2.png" alt="" class="img-fluid">
-                <p class="text-center">Lentes</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-2">
-        <div class="card shadow">
-            <div class="card-body">
-                <img src="https://www.kebuena.com.mx/wp-content/uploads/2019/12/disencc83o-sin-titulo-2.png" alt="" class="img-fluid">
-                <p class="text-center">Lentes</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-2">
-        <div class="card shadow">
-            <div class="card-body">
-                <img src="https://www.kebuena.com.mx/wp-content/uploads/2019/12/disencc83o-sin-titulo-2.png" alt="" class="img-fluid">
-                <p class="text-center">Lentes</p>
-            </div>
-        </div>
-    </div>
-</div>
 
-<h3 class="text-center font-weight-light text-muted my-4">Lo más nuevo</h3>
-<div class="row mt-3">
-    <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-        <div class="product-grid2">
-            <div class="product-image2">
-                <a href="#">
-                    <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-1.jpeg">
-                    <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-2.jpeg">
-                </a>
-                <ul class="social">
-                    <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                    <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                    <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                </ul>
-                <a class="add-to-cart" href="">Add to cart</a>
-            </div>
-            <div class="product-content">
-                <h3 class="title"><a href="#">Women's Designer Top</a></h3>
-                <span class="price">$599.99</span>
-            </div>
+
+
+    <!-- ========================= SECTION INTRO ========================= -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            @foreach ($getBanner as $key => $banner)
+                <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
+                    class="{{ $key == 0 ? 'active' : '' }}"></li>
+            @endforeach
+        </ol>
+        <div class="carousel-inner">
+            @foreach ($getBanner as $key => $banner)
+                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                    <img src="{{ $banner->imagen }}" class="d-block w-100" alt="{{ $banner->titulo }}" style="max-height: 400px;">
+                </div>
+            @endforeach
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-        <div class="product-grid2">
-            <div class="product-image2">
-                <a href="#">
-                    <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-3.jpeg">
-                    <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-4.jpeg">
-                </a>
-                <ul class="social">
-                    <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                    <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                    <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                </ul>
-                <a class="add-to-cart" href="">Add to cart</a>
-              </div>
-              <div class="product-content">
-                  <h3 class="title"><a href="#">Women's Yellow Top</a></h3>
-                  <span class="price">$699.99</span>
-              </div>
-          </div>
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-        <div class="product-grid2">
-            <div class="product-image2">
-                <a href="#">
-                    <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-5.jpeg">
-                    <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-6.jpeg">
-                </a>
-                <ul class="social">
-                    <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                    <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                    <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                </ul>
-                <a class="add-to-cart" href="">Add to cart</a>
-            </div>
-            <div class="product-content">
-                <h3 class="title"><a href="#">Women's Designer Top</a></h3>
-                <span class="price">$599.99</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-        <div class="product-grid2">
-            <div class="product-image2">
-                <a href="#">
-                    <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-7.jpeg">
-                    <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-8.jpeg">
-                </a>
-                <ul class="social">
-                    <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                    <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                    <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                </ul>
-                <a class="add-to-cart" href="">Add to cart</a>
-            </div>
-            <div class="product-content">
-                <h3 class="title"><a href="#">Women's Designer Top</a></h3>
-                <span class="price">$599.99</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-        <div class="product-grid2">
-            <div class="product-image2">
-                <a href="#">
-                    <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-1.jpg">
-                    <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-2.jpg">
-                </a>
-                <ul class="social">
-                    <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                    <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                    <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                </ul>
-                <a class="add-to-cart" href="">Add to cart</a>
-            </div>
-            <div class="product-content">
-                <h3 class="title"><a href="#">Women's Designer Top</a></h3>
-                <span class="price">$599.99</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-        <div class="product-grid2">
-            <div class="product-image2">
-                <a href="#">
-                    <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-5.jpg">
-                    <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-6.jpg">
-                </a>
-                <ul class="social">
-                    <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                    <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                    <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                </ul>
-                <a class="add-to-cart" href="">Add to cart</a>
-            </div>
-            <div class="product-content">
-                <h3 class="title"><a href="#">Women's Designer Top</a></h3>
-                <span class="price">$599.99</span>
-            </div>
-        </div>
-    </div>
-</div>
+    <!-- ========================= SECTION INTRO END// ========================= -->
+
+    <!-- ========================= SECTION FEATURE ========================= -->
+    <section class="section-content padding-y-sm">
+        <div class="container">
+            <article class="card card-body">
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <figure class="item-feature">
+                            <span class="text-primary"><i class="fa fa-2x fa-truck"></i></span>
+                            <figcaption class="pt-3">
+                                <h5 class="title">Fast delivery</h5>
+                                <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    tempor incididunt ut labore </p>
+                            </figcaption>
+                        </figure> <!-- iconbox // -->
+                    </div><!-- col // -->
+                    <div class="col-md-4">
+                        <figure class="item-feature">
+                            <span class="text-primary"><i class="fa fa-2x fa-landmark"></i></span>
+                            <figcaption class="pt-3">
+                                <h5 class="title">Creative Strategy</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                </p>
+                            </figcaption>
+                        </figure> <!-- iconbox // -->
+                    </div><!-- col // -->
+                    <div class="col-md-4">
+                        <figure class="item-feature">
+                            <span class="text-primary"><i class="fa fa-2x fa-lock"></i></span>
+                            <figcaption class="pt-3">
+                                <h5 class="title">High secured </h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                </p>
+                            </figcaption>
+                        </figure> <!-- iconbox // -->
+                    </div> <!-- col // -->
+                </div>
+            </article>
+
+        </div> <!-- container .//  -->
+    </section>
+    <!-- ========================= SECTION FEATURE END// ========================= -->
+
+
+    <!-- ========================= SECTION  ========================= -->
+    <section class="section-name padding-y-sm">
+        <div class="container">
+
+            <header class="section-heading">
+                <a href="#" class="btn btn-outline-primary float-right">See all</a>
+                <h3 class="section-title font-weight-light">Nuevos Productos</h3>
+            </header><!-- sect-heading -->
+
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div href="#" class="card card-product-grid">
+                        <a href="#" class="img-wrap"> <img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/1.jpg"> </a>
+                        <span class="topbar">
+                            <a href="#" class="float-right">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        </span>
+                        <figcaption class="info-wrap">
+                            <a href="#" class="title">Just another product name</a>
+                            <div class="price mt-1">$179.00
+                                <a href="" class="btn btn-sm btn-outline-primary float-right">Añadir al carrito <i
+                                        class="fas fa-bag"></i></a>
+                            </div> <!-- price-wrap.// -->
+                        </figcaption>
+                    </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                    <div href="#" class="card card-product-grid">
+                        <a href="#" class="img-wrap"> <img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/2.jpg"> </a>
+                        <span class="topbar">
+                            <a href="#" class="float-right">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        </span>
+                        <figcaption class="info-wrap">
+                            <a href="#" class="title">Some item name here</a>
+                            <div class="price mt-1">$280.00
+                                <a href="" class="btn btn-sm btn-outline-primary float-right">Añadir al carrito <i
+                                        class="fas fa-bag"></i></a>
+                            </div> <!-- price-wrap.// -->
+                        </figcaption>
+                    </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                    <div href="#" class="card card-product-grid">
+                        <a href="#" class="img-wrap"> <img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/3.jpg"> </a>
+                        <span class="topbar">
+                            <a href="#" class="float-right">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        </span>
+                        <figcaption class="info-wrap">
+                            <a href="#" class="title">Great product name here</a>
+                            <div class="price mt-1">$56.00
+                                <a href="" class="btn btn-sm btn-outline-primary float-right">Añadir al carrito <i
+                                        class="fas fa-bag"></i></a>
+                            </div> <!-- price-wrap.// -->
+                        </figcaption>
+                    </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                    <div href="#" class="card card-product-grid">
+                        <a href="#" class="img-wrap"> <img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/4.jpg"> </a>
+                        <span class="topbar">
+                            <a href="#" class="float-right">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        </span>
+                        <figcaption class="info-wrap">
+                            <a href="#" class="title">Just another product name</a>
+                            <div class="price mt-1">$179.00
+                                <a href="" class="btn btn-sm btn-outline-primary float-right">Añadir al carrito <i
+                                        class="fas fa-bag"></i></a>
+                            </div> <!-- price-wrap.// -->
+                        </figcaption>
+                    </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                    <div href="#" class="card card-product-grid">
+                        <a href="#" class="img-wrap"> <img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/5.jpg"> </a>
+                        <span class="topbar">
+                            <a href="#" class="float-right">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        </span>
+                        <figcaption class="info-wrap">
+                            <a href="#" class="title">Just another product name</a>
+                            <div class="price mt-1">$179.00
+                                <a href="" class="btn btn-sm btn-outline-primary float-right">Añadir al carrito <i
+                                        class="fas fa-bag"></i></a>
+                            </div> <!-- price-wrap.// -->
+                        </figcaption>
+                    </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                    <div href="#" class="card card-product-grid">
+                        <a href="#" class="img-wrap"> <img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/6.jpg"> </a>
+                        <span class="topbar">
+                            <a href="#" class="float-right">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        </span>
+                        <figcaption class="info-wrap">
+                            <a href="#" class="title">Some item name here</a>
+                            <div class="price mt-1">$280.00
+                                <a href="" class="btn btn-sm btn-outline-primary float-right">Añadir al carrito <i
+                                        class="fas fa-bag"></i></a>
+                            </div> <!-- price-wrap.// -->
+                        </figcaption>
+                    </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                    <div href="#" class="card card-product-grid">
+                        <a href="#" class="img-wrap"> <img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/7.jpg"> </a>
+                        <span class="topbar">
+                            <a href="#" class="float-right">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        </span>
+                        <figcaption class="info-wrap">
+                            <a href="#" class="title">Great product name here</a>
+                            <div class="price mt-1">$56.00
+                                <a href="" class="btn btn-sm btn-outline-primary float-right">Añadir al carrito <i
+                                        class="fas fa-bag"></i></a>
+                            </div> <!-- price-wrap.// -->
+                        </figcaption>
+                    </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                    <div href="#" class="card card-product-grid">
+                        <a href="#" class="img-wrap"> <img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/8.jpg"> </a>
+                        <span class="topbar">
+                            <a href="#" class="float-right">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        </span>
+                        <figcaption class="info-wrap">
+                            <a href="#" class="title">Just another product name</a>
+                            <div class="price mt-1">$179.00
+                                <a href="" class="btn btn-sm btn-outline-primary float-right">Añadir al carrito <i
+                                        class="fas fa-bag"></i></a>
+                            </div> <!-- price-wrap.// -->
+                        </figcaption>
+                    </div>
+                </div> <!-- col.// -->
+            </div> <!-- row.// -->
+
+        </div><!-- container // -->
+    </section>
+    <!-- ========================= SECTION  END// ========================= -->
+
+    <!-- ========================= SECTION  ========================= -->
+    <section class="section-name bg padding-y-sm">
+        <div class="container">
+            <header class="section-heading">
+                <h3 class="section-title font-weight-light">Nuestras marcas</h3>
+            </header><!-- sect-heading -->
+
+            <div class="row">
+                <div class="col-md-2 col-6">
+                    <figure class="box item-logo">
+                        <a href="#"><img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo1.png"></a>
+                        <figcaption class="border-top pt-2">36 Products</figcaption>
+                    </figure> <!-- item-logo.// -->
+                </div> <!-- col.// -->
+                <div class="col-md-2  col-6">
+                    <figure class="box item-logo">
+                        <a href="#"><img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo2.png"></a>
+                        <figcaption class="border-top pt-2">980 Products</figcaption>
+                    </figure> <!-- item-logo.// -->
+                </div> <!-- col.// -->
+                <div class="col-md-2  col-6">
+                    <figure class="box item-logo">
+                        <a href="#"><img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo3.png"></a>
+                        <figcaption class="border-top pt-2">25 Products</figcaption>
+                    </figure> <!-- item-logo.// -->
+                </div> <!-- col.// -->
+                <div class="col-md-2  col-6">
+                    <figure class="box item-logo">
+                        <a href="#"><img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo4.png"></a>
+                        <figcaption class="border-top pt-2">72 Products</figcaption>
+                    </figure> <!-- item-logo.// -->
+                </div> <!-- col.// -->
+                <div class="col-md-2  col-6">
+                    <figure class="box item-logo">
+                        <a href="#"><img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo5.png"></a>
+                        <figcaption class="border-top pt-2">41 Products</figcaption>
+                    </figure> <!-- item-logo.// -->
+                </div> <!-- col.// -->
+                <div class="col-md-2  col-6">
+                    <figure class="box item-logo">
+                        <a href="#"><img
+                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo2.png"></a>
+                        <figcaption class="border-top pt-2">12 Products</figcaption>
+                    </figure> <!-- item-logo.// -->
+                </div> <!-- col.// -->
+            </div> <!-- row.// -->
+        </div><!-- container // -->
+    </section>
+    <!-- ========================= SECTION  END// ========================= -->
+
 @endsection
