@@ -209,7 +209,7 @@
                 <div class="img-wrap"> 
                     <span class="badge badge-danger"> NEW </span>
                     <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/1.jpg">
-                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Ver detalles</a>
                 </div> <!-- img-wrap.// -->
                 <figcaption class="info-wrap">
                     <div class="fix-height">
@@ -219,7 +219,7 @@
                             <del class="price-old">$1980</del>
                         </div> <!-- price-wrap.// -->
                     </div>
-                    <a href="#" class="btn btn-block btn-primary">Add to cart </a>
+                    <a href="#" class="btn btn-block btn-sm btn-outline-primary">Añadir al carrito <i class="fas fa-shopping-cart"></i> </a>
                 </figcaption>
             </figure>
         </div> <!-- col.// -->
@@ -228,7 +228,7 @@
             <figure class="card card-product-grid">
                 <div class="img-wrap"> 
                     <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/2.jpg">
-                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Ver detalles</a>
                 </div> <!-- img-wrap.// -->
                 <figcaption class="info-wrap">
                     <div class="fix-height">
@@ -237,7 +237,7 @@
                             <span class="price">$1280</span>
                         </div> <!-- price-wrap.// -->
                     </div>
-                    <a href="#" class="btn btn-block btn-primary">Add to cart </a>	
+                    <a href="#" class="btn btn-block btn-sm btn-outline-primary">Añadir al carrito <i class="fas fa-shopping-cart"></i> </a>
                 </figcaption>
             </figure>
         </div> <!-- col.// -->
@@ -246,7 +246,7 @@
             <figure class="card card-product-grid">
                 <div class="img-wrap"> 
                     <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/3.jpg">
-                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Ver detalles</a>
                 </div> <!-- img-wrap.// -->
                 <figcaption class="info-wrap">
                     <div class="fix-height">
@@ -255,7 +255,7 @@
                             <span class="price">$1280</span>
                         </div> <!-- price-wrap.// -->
                     </div>
-                    <a href="#" class="btn btn-block btn-primary">Add to cart </a>	
+                    <a href="#" class="btn btn-block btn-sm btn-outline-primary">Añadir al carrito <i class="fas fa-shopping-cart"></i> </a>	
                 </figcaption>
             </figure>
         </div> <!-- col.// -->
@@ -264,7 +264,7 @@
             <figure class="card card-product-grid">
                 <div class="img-wrap"> 
                     <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/4.jpg">
-                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Ver detalles</a>
                 </div> <!-- img-wrap.// -->
                 <figcaption class="info-wrap">
                     <div class="fix-height">
@@ -273,7 +273,7 @@
                             <span class="price">$1280</span>
                         </div> <!-- price-wrap.// -->
                     </div>
-                    <a href="#" class="btn btn-block btn-primary">Add to cart </a>	
+                    <a href="#" class="btn btn-block btn-sm btn-outline-primary">Añadir al carrito <i class="fas fa-shopping-cart"></i> </a>	
                 </figcaption>
             </figure>
         </div> <!-- col.// -->
@@ -282,7 +282,7 @@
             <figure class="card card-product-grid">
                 <div class="img-wrap"> 
                     <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/5.jpg">
-                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Ver detalles</a>
                 </div> <!-- img-wrap.// -->
                 <figcaption class="info-wrap">
                     <div class="fix-height">
@@ -291,7 +291,7 @@
                             <span class="price">$1280</span>
                         </div> <!-- price-wrap.// -->
                     </div>
-                    <a href="#" class="btn btn-block btn-primary">Add to cart </a>	
+                    <a href="#" class="btn btn-block btn-sm btn-outline-primary">Añadir al carrito <i class="fas fa-shopping-cart"></i> </a>
                 </figcaption>
             </figure>
         </div> <!-- col.// -->
@@ -300,7 +300,7 @@
             <figure class="card card-product-grid">
                 <div class="img-wrap"> 
                     <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/6.jpg">
-                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Ver detalles</a>
                 </div> <!-- img-wrap.// -->
                 <figcaption class="info-wrap">
                     <div class="fix-height">
@@ -309,7 +309,7 @@
                             <span class="price">$1280</span>
                         </div> <!-- price-wrap.// -->
                     </div>
-                    <a href="#" class="btn btn-block btn-primary">Add to cart </a>	
+                    <a href="#" class="btn btn-block btn-sm btn-outline-primary">Añadir al carrito <i class="fas fa-shopping-cart"></i> </a>	
                 </figcaption>
             </figure>
         </div> <!-- col.// -->
@@ -318,7 +318,7 @@
             <figure class="card card-product-grid">
                 <div class="img-wrap"> 
                     <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/7.jpg">
-                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Ver detalles</a>
                 </div> <!-- img-wrap.// -->
                 <figcaption class="info-wrap">
                     <div class="fix-height">
@@ -327,7 +327,7 @@
                             <span class="price">$1280</span>
                         </div> <!-- price-wrap.// -->
                     </div>
-                    <a href="#" class="btn btn-block btn-primary">Add to cart </a>	
+                    <a href="#" class="btn btn-block btn-sm btn-outline-primary">Añadir al carrito <i class="fas fa-shopping-cart"></i> </a>
                 </figcaption>
             </figure>
         </div> <!-- col.// -->
@@ -336,7 +336,7 @@
             <figure class="card card-product-grid">
                 <div class="img-wrap"> 
                     <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/1.jpg">
-                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Ver detalles</a>
                 </div> <!-- img-wrap.// -->
                 <figcaption class="info-wrap">
                     <div class="fix-height">
@@ -345,7 +345,7 @@
                             <span class="price">$1280</span>
                         </div> <!-- price-wrap.// -->
                     </div>
-                    <a href="#" class="btn btn-block btn-primary">Add to cart </a>	
+                    <a href="#" class="btn btn-block btn-sm btn-outline-primary">Añadir al carrito <i class="fas fa-shopping-cart"></i> </a>
                 </figcaption>
             </figure>
         </div> <!-- col.// -->
