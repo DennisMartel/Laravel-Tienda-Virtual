@@ -20,12 +20,12 @@
     <!-- /.content-header -->
     <div class="row">
         <div class="col-12">
-            <div class="card card-success card-outline">
+            <div class="card card-info card-outline">
                 <div class="card-header">
                     <div class="d-flex flex-row justify-content-between align-items-center">
                         <h3 class="card-title">Listado de Banners</h3>
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#staticBackdrop">
                             Crear Banner
                         </button>
 
@@ -63,26 +63,27 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Descripcion (Opcional)</label>
-                                                <textarea name="descripcion" class="form-control" placeholder="Ingresar una descripcion"></textarea>
+                                                <textarea name="descripcion" class="form-control"
+                                                    placeholder="Ingresar una descripcion"></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label>Enlace</label>
                                                 <input type="text" name="url" class="form-control"
                                                     placeholder="Ingresar un enlace">
                                             </div>
-                                            
+
                                             <div class="form-group">
                                                 <label>Seleciona una opción</label>
                                                 <select name="posicion" class="form-control">
                                                     <option value="1">Banner</option>
                                                     <option value="2">Anuncio publicitario</option>
                                                 </select>
-                                            </div> 
+                                            </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-success">Guardar</button>
+                                        <button type="submit" class="btn btn-warning">Guardar</button>
                                     </div>
-                                </form>
+                                    </form>
                                 </div>
                             </div>
                         </div>
