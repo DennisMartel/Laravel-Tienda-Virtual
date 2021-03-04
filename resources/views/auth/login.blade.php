@@ -1,8 +1,8 @@
 @extends('layouts.app')
-<link rel="stylesheet" href="{{ asset('css/Login.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('css/Login.css') }}"> --}}
 @section('content')
 
-<div class="row justify-content-center" style="margin-top: 155px;">
+{{-- <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">{{ __('Login') }}</div>
@@ -68,6 +68,52 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y" style="min-height:84vh">
+
+    <!-- ============================ COMPONENT LOGIN   ================================= -->
+        <div class="card mx-auto border border-primary" style="max-width: 380px;">
+          <div class="card-body">
+          <h4 class="card-title mb-4">Inicio de Sesión</h4>
+          <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <a href="#" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp  Iniciar con Facebook</a>
+                <a href="#" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Iniciar con Google</a>
+                <div class="form-group">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div> <!-- form-group// -->
+              <div class="form-group">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div> <!-- form-group// -->
+              
+              <div class="form-group">
+                  <a href="#" class="float-right">Olvide mi contraseña?</a> 
+                <label class="float-left custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input">
+                     <div class="custom-control-label"> Recordarme </div>
+                </label>
+              </div> <!-- form-group form-check .// -->
+              <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-block"> Ingresar  </button>
+              </div> <!-- form-group// -->    
+          </form>
+          </div> <!-- card-body.// -->
+        </div> <!-- card .// -->
+    
+         <p class="text-center mt-4">No tengo una cuenta? <a href="{{ url('register') }}">Registrarme</a></p>
+         <br><br>
+    <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
 
 @endsection

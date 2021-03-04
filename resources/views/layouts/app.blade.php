@@ -6,7 +6,7 @@
     <meta http-equiv="pragma" content="no-cache" />
     <meta http-equiv="cache-control" content="max-age=604800" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Tienda Virtual | @yield('title')</title>
 
     <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/favicon.ico" rel="shortcut icon"
@@ -94,8 +94,12 @@
                                     @else
                                         <span class="text-muted">Bienvenido!</span>
                                         <div>
-                                            <a href="{{ url('login') }}">{{ Auth::user()->name }}</a>
+                                            <a href="{{ url('login') }}">{{ Auth::user()->name }}</a> |
+                                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
                                         </div>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
                                     @endguest
                                 </div>
                             </div>
