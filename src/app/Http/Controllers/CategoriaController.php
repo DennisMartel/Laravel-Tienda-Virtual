@@ -17,7 +17,8 @@ class CategoriaController extends Controller
     public function index()
     {
         $categorias = DB::table('categorias')->get();
-        return view('admin.categorias.index', compact('categorias'));
+        $departamentos = DB::table('departamentos')->get();
+        return view('admin.categorias.index', compact('categorias','departamentos'));
     }
 
     /**

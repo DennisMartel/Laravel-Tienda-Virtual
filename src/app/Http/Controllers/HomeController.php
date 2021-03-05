@@ -28,4 +28,9 @@ class HomeController extends Controller
     {
         return view('cart');
     }
+
+    public function departamento()
+    {
+        return view('shop');
+    }
 }

@@ -122,30 +122,12 @@
 
             <div class="collapse navbar-collapse" id="main_nav">
                 <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#">MODA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">BEBÉS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">JUGUETES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">TECNOLOGÍA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">HOGAR</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">DEPORTES Y FITNESS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">SALUD Y BELLEZA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">COVID 19</a>
-                    </li>
+                    @php
+                        $departamentos = DB::table('departamentos')->where('status',0)->get();
+                    @endphp
+                    @foreach($departamentos as $departamento)
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/', ucwords(str_replace(" ","",$departamento->titulo))) }}">{{ $departamento->titulo }}</a></li>
+                    @endforeach
                     {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> More</a>
                         <div class="dropdown-menu">
