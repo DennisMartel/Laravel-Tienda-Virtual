@@ -295,13 +295,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('banner') }}" class="nav-link">
+            <a href="{{ url('subcategorias') }}" class="nav-link">
               <i class="nav-icon far fa-circle"></i>
               <p>Subcategorias</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ url('marcas') }}" class="nav-link">
               <i class="nav-icon far fa-circle"></i>
               <p>Marcas</p>
             </a>

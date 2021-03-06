@@ -8,13 +8,13 @@
     <!-- ========================= SECTION INTRO ========================= -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            @foreach ($getBanner as $key => $banner)
+            @foreach ($banners as $key => $banner)
                 <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
                     class="{{ $key == 0 ? 'active' : '' }}"></li>
             @endforeach
         </ol>
         <div class="carousel-inner">
-            @foreach ($getBanner as $key => $banner)
+            @foreach ($banners as $key => $banner)
                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                     <img src="{{ $banner->imagen }}" class="d-block w-100" alt="{{ $banner->titulo }}" style="max-height: 400px;">
                 </div>
@@ -241,52 +241,20 @@
     <section class="section-name bg padding-y-sm">
         <div class="container">
             <header class="section-heading">
-                <h3 class="section-title font-weight-light">Nuestras marcas</h3>
+                <h3 class="section-title font-weight-light">Marcas</h3>
             </header><!-- sect-heading -->
 
             <div class="row">
-                <div class="col-md-2 col-6">
-                    <figure class="box item-logo">
-                        <a href="#"><img
-                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo1.png"></a>
-                        <figcaption class="border-top pt-2">36 Products</figcaption>
-                    </figure> <!-- item-logo.// -->
-                </div> <!-- col.// -->
-                <div class="col-md-2  col-6">
-                    <figure class="box item-logo">
-                        <a href="#"><img
-                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo2.png"></a>
-                        <figcaption class="border-top pt-2">980 Products</figcaption>
-                    </figure> <!-- item-logo.// -->
-                </div> <!-- col.// -->
-                <div class="col-md-2  col-6">
-                    <figure class="box item-logo">
-                        <a href="#"><img
-                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo3.png"></a>
-                        <figcaption class="border-top pt-2">25 Products</figcaption>
-                    </figure> <!-- item-logo.// -->
-                </div> <!-- col.// -->
-                <div class="col-md-2  col-6">
-                    <figure class="box item-logo">
-                        <a href="#"><img
-                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo4.png"></a>
-                        <figcaption class="border-top pt-2">72 Products</figcaption>
-                    </figure> <!-- item-logo.// -->
-                </div> <!-- col.// -->
-                <div class="col-md-2  col-6">
-                    <figure class="box item-logo">
-                        <a href="#"><img
-                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo5.png"></a>
-                        <figcaption class="border-top pt-2">41 Products</figcaption>
-                    </figure> <!-- item-logo.// -->
-                </div> <!-- col.// -->
-                <div class="col-md-2  col-6">
-                    <figure class="box item-logo">
-                        <a href="#"><img
-                                src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo2.png"></a>
-                        <figcaption class="border-top pt-2">12 Products</figcaption>
-                    </figure> <!-- item-logo.// -->
-                </div> <!-- col.// -->
+                @foreach($marcas as $marca)
+                    <div class="col-md-2 col-6">
+                        <figure class="box item-logo">
+                            <a href="#">
+                                <img src="{{ $marca->imagen }}">
+                            </a>
+                            <figcaption class="border-top pt-2">{{ $marca->titulo }}</figcaption>
+                        </figure> <!-- item-logo.// -->
+                    </div> <!-- col.// -->
+                @endforeach
             </div> <!-- row.// -->
         </div><!-- container // -->
     </section>

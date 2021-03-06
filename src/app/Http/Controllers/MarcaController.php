@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class DepartamentoController extends Controller
+class MarcaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        $departamentos = DB::table('departamentos')->paginate(8);
-        return view('admin.departamentos.index', compact('departamentos'));
+        $marcas = DB::table('marcas')->get();
+        return view('admin.marcas.index', compact('marcas'));
     }
 
     /**
@@ -27,7 +27,7 @@ class DepartamentoController extends Controller
      */
     public function create()
     {
-        return view('admin.departamentos.create');
+        //
     }
 
     /**
@@ -45,7 +45,7 @@ class DepartamentoController extends Controller
         $url = 'http://localhost/ecommerce/src/storage/app/';
         $url = $url.$imagen;
 
-        DB::table('departamentos')->insert([
+        DB::table('marcas')->insert([
             'imagen' => $url,
             'titulo' => $request->titulo,
             'status' => $request->status,
@@ -53,7 +53,7 @@ class DepartamentoController extends Controller
             'updated_at' => Carbon::now(),
         ]);
 
-        return redirect('departamentos')->with('agregado', 'ok');
+        return redirect('marcas')->with('agregado', 'ok');
     }
 
     /**
@@ -98,10 +98,10 @@ class DepartamentoController extends Controller
      */
     public function destroy($id)
     {
-        $getImage = DB::table('departamentos')->where('idDepartamento', $id)->first();
+        $getImage = DB::table('marcas')->where('idMarca', $id)->first();
         $imagen = str_replace('http://localhost/ecommerce/src/storage/app/','',$getImage->imagen);
         Storage::disk('local')->delete('app', $imagen);
-        DB::table('departamentos')->where('idDepartamento', $id)->delete();
-        return redirect('departamentos')->with('eliminar', 'ok');
+        DB::table('marcas')->where('idMarca', $id)->delete();
+        return redirect('marcas')->with('eliminar', 'ok');
     }
 }

@@ -44,7 +44,7 @@ class CategoriaController extends Controller
         $imageName = str_replace(" ","",$request->titulo);
         $imageExtension = $request->file('imagen')->extension();
         $imagen = $request->file('imagen')->storeAs('categoriaImagenes',$imageName.$currentTime.'.'.$imageExtension);
-        $url = 'http://localhost/ecommerce/storage/app/';
+        $url = 'http://localhost/ecommerce/src/storage/app/';
         $url = $url.$imagen;
 
         DB::table('categorias')->insert([
@@ -102,9 +102,9 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         $getImage = DB::table('categorias')->where('idCategoria', $id)->first();
-        $imagen = str_replace('http://localhost/ecommerce/storage/app/','',$getImage->imagen);
+        $imagen = str_replace('http://localhost/ecommerce/src/storage/app/','',$getImage->imagen);
         Storage::disk('local')->delete('app', $imagen);
-        DB::table('categorias')->where('idcategoria', $id)->delete();
+        DB::table('categorias')->where('idCategoria', $id)->delete();
         return redirect('categorias')->with('eliminar', 'ok');
     }
 }

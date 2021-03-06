@@ -126,7 +126,7 @@
                         $departamentos = DB::table('departamentos')->where('status',0)->get();
                     @endphp
                     @foreach($departamentos as $departamento)
-                        <li class="nav-item"><a class="nav-link" href="{{ url('/', ucwords(str_replace(" ","",$departamento->titulo))) }}">{{ $departamento->titulo }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('d', ucwords(str_replace(" ","",$departamento->titulo))) }}">{{ $departamento->titulo }}</a></li>
                     @endforeach
                     {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> More</a>

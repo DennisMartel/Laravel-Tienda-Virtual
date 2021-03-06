@@ -15,8 +15,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $getBanner = DB::table('banners')->get();
-        return view('home', compact('getBanner'));
+        $banners = DB::table('banners')->get();
+        $marcas = DB::table('marcas')->get();
+        return view('home', compact('banners','marcas'));
     }
 
     public function shop()

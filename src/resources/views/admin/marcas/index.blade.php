@@ -7,12 +7,12 @@
     <div class="content-header">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Categorias</h1>
+                <h1 class="m-0 text-dark">Marcas</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                    <li class="breadcrumb-item active">Categorias</li>
+                    <li class="breadcrumb-item active">Marcas</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -23,10 +23,10 @@
             <div class="card card-info card-outline">
                 <div class="card-header">
                     <div class="d-flex flex-row justify-content-between align-items-center">
-                        <h3 class="card-title">Listado de Categorias</h3>
+                        <h3 class="card-title">Listado de Marcas</h3>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#staticBackdrop">
-                            Crear Categoria
+                            Crear Marca
                         </button>
 
                         {{-- Modal Agregar Departamentos --}}
@@ -36,36 +36,28 @@
                             <div class="modal-dialog">
                                 <div class="modal-content bg-info">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Crear Nueva Categoria</h5>
+                                        <h5 class="modal-title" id="staticBackdropLabel">Crear Nueva Marca</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <!-- form start -->
-                                    <form role="form" action="{{ route('categorias.store') }}" method="POST" enctype="multipart/form-data">
+                                    <form role="form" action="{{ route('marcas.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
                                             <label for="Imagen">Imagen</label>
                                             <div class="input-group">
                                               <div class="custom-file">
-                                                <input type="file" name="imagen" class="custom-file-input" id="exampleInputFile">
+                                                <input type="file" name="imagen" class="custom-file-input" id="exampleInputFile" data-browser="Elegir archivo">
                                                 <label class="custom-file-label" for="exampleInputFile">Ningún archivo seleccionado</label>
                                               </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Titulo</label>
-                                            <input type="text" name="titulo" class="form-control" placeholder="Ingresar titulo">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Elige el departamento</label>
-                                            <select name="idDepartamento" class="form-control select2" style="width: 100%;">
-                                                @foreach($departamentos as $departamento)
-                                                    <option value="{{ $departamento->idDepartamento }}">{{ $departamento->titulo }}</option>
-                                                @endforeach
-                                            </select>
                                           </div>
+                                        <div class="form-group">
+                                          <label>Titulo</label>
+                                          <input type="text" name="titulo" class="form-control" placeholder="Ingresar titulo">
+                                        </div>
                                         <div class="form-group">
                                           <label>Mostrar en menu</label>
                                           <select name="status" class="form-control">
@@ -96,14 +88,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($categorias as $categoria)
+                            @foreach($marcas as $marca)
                                 <tr>
-                                    <td><img src="{{ $categoria->imagen }}" alt="{{ $categoria->titulo }}" width="50"></td>
-                                    <td>{{ $categoria->titulo }}</td>
-                                    <td>@if($categoria->status == 0)<span class="badge badge-success">Activo</span>@else<span class="badge badge-danger">Inactivo</span>@endif</td>
-                                    <td>{{ $categoria->created_at }}</td>
+                                    <td><img src="{{ $marca->imagen }}" alt="{{ $marca->titulo }}" width="50"></td>
+                                    <td>{{ $marca->titulo }}</td>
+                                    <td>@if($marca->status == 0)<span class="badge badge-success">Activo</span>@else<span class="badge badge-danger">Inactivo</span>@endif</td>
+                                    <td>{{ $marca->created_at }}</td>
                                     <td>
-                                        <form action="{{ route('categorias.destroy', $categoria->idCategoria) }}" class="formulario-eliminar" method="post">
+                                        <form action="{{ route('marcas.destroy', $marca->idMarca) }}" class="formulario-eliminar" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-flat btn-danger"><i class="fas fa-trash-alt"></i></button>
