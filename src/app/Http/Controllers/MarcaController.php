@@ -41,7 +41,7 @@ class MarcaController extends Controller
         $currentTime = Carbon::now()->timestamp;
         $imageName = str_replace(" ","",$request->titulo);
         $imageExtension = $request->file('imagen')->extension();
-        $imagen = $request->file('imagen')->storeAs('departamentoImagenes',$imageName.$currentTime.'.'.$imageExtension);
+        $imagen = $request->file('imagen')->storeAs('imagenesMarca',$imageName.$currentTime.'.'.$imageExtension);
         $url = 'http://localhost/ecommerce/src/storage/app/';
         $url = $url.$imagen;
 

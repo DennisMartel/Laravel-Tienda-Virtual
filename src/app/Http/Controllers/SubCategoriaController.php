@@ -42,7 +42,7 @@ class SubCategoriaController extends Controller
         $currentTime = Carbon::now()->timestamp;
         $imageName = str_replace(" ","",$request->titulo);
         $imageExtension = $request->file('imagen')->extension();
-        $imagen = $request->file('imagen')->storeAs('departamentoImagenes',$imageName.$currentTime.'.'.$imageExtension);
+        $imagen = $request->file('imagen')->storeAs('imagenesSubcategoria',$imageName.$currentTime.'.'.$imageExtension);
         $url = 'http://localhost/ecommerce/src/storage/app/';
         $url = $url.$imagen;
 
