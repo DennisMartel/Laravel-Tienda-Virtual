@@ -23,4 +23,6 @@ Route::group(['middleware' => ['role:admin']], function() {
     Route::resource('/categorias', App\Http\Controllers\CategoriaController::class);
     Route::resource('/subcategorias', App\Http\Controllers\SubCategoriaController::class);
     Route::resource('/marcas', App\Http\Controllers\MarcaController::class);
+    Route::get('/productos', [App\Http\Controllers\ProductoController::class, 'index']);
+    Route::get('/crearProducto', [App\Http\Controllers\ProductoController::class, 'create']);
 });
