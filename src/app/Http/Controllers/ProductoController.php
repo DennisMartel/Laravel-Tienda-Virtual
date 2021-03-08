@@ -38,18 +38,16 @@ class ProductoController extends Controller
             ]);
 
         if($guardarProducto) {
-            if($request->file('imagenes') != null && $request->file('imagenes') != "") {
-                foreach($request->file('imagenes') as $imagenProducto) {
-                    $tiempo = Carbon::now();
-                    $nombreImagen = str_replace(" ","", time());
-                    $extension = $imagenProducto->extension();
-                    $imagen = $imagenProducto->storeAs('imagenesProducto',$nombreImagen.$tiempo.'.'.$extension);
-                    dd($imagenProducto);
+            if($request->imagenes != null && $request->imagenes != "") {
+                foreach($request->file('imagenes') as $imagen) {
+                    $random = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(10 / strlen($x)))), 1, 10);
+                    $nombreImagen = str_replace(" ","", $request->nombre);
+                    $extension = $imagen->extension();
+                    $imagen = $imagen->storeAs('imagenesProducto',$nombreImagen.$random.'.'.$extension);
                     $url = 'http://localhost/ecommerce/src/storage/app/';
                     $url = $url.$imagen;
                     DB::table('imagenes_productos')
                         ->insert([
-                            'idProducto' => $request->sku,
                             'imagenes'   => $url,
                         ]);
                 }
