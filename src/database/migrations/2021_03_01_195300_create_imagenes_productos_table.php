@@ -15,9 +15,10 @@ class CreateImagenesProductosTable extends Migration
     {
         Schema::create('imagenes_productos', function (Blueprint $table) {
             $table->id('idImagenProducto');
-            $table->bigInteger('idProducto');
+            $table->unsignedBigInteger('idProducto');
             $table->text('imagenes');
             $table->timestamps();
+            $table->foreign('idProducto')->references('idProducto')->on('productos')->onDelete('cascade');
         });
     }
 

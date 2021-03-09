@@ -23,10 +23,12 @@ class CreateProductosTable extends Migration
             $table->longText('descripcion');
             $table->longText('detalles');
             $table->integer('status');
-            $table->bigInteger('departamentoId');
-            $table->bigInteger('categoriaId');
-            $table->bigInteger('subCategoriaId');
+            $table->unsignedBigInteger('departamentoId');
+            $table->unsignedBigInteger('categoriaId');
+            $table->unsignedBigInteger('subCategoriaId');
             $table->timestamps();
+            $table->foreign('departamentoId')->references('idDepartamento')->on('departamentos')->onDelete('cascade');
+            $table->foreign('categoriaId')->references('idCategoria')->on('categorias')->onDelete('cascade');
         });
     }
 
