@@ -13,13 +13,21 @@ class CreateProductosTable extends Migration
      */
     public function up()
     {
+        Schema::create('marcas', function (Blueprint $table) {
+            $table->id('idMarca');
+            $table->text('titulo');
+            $table->longText('imagen');
+            $table->integer('status');
+            $table->timestamps();
+        });
+
         Schema::create('productos', function (Blueprint $table) {
             $table->id('idProducto');
             $table->string('sku');
             $table->text('nombre');
             $table->float('precio');
             $table->longText('slug');
-            $table->bigInteger('marca');
+            $table->unsignedBigInteger('marca');
             $table->longText('descripcion');
             $table->longText('detalles');
             $table->integer('status');
@@ -29,6 +37,8 @@ class CreateProductosTable extends Migration
             $table->timestamps();
             $table->foreign('departamentoId')->references('idDepartamento')->on('departamentos')->onDelete('cascade');
             $table->foreign('categoriaId')->references('idCategoria')->on('categorias')->onDelete('cascade');
+            $table->foreign('subCategoriaId')->references('idSubCategoria')->on('sub_categorias')->onDelete('cascade');
+            $table->foreign('marca')->references('idMarca')->on('marcas')->onDelete('cascade');
         });
     }
 
@@ -39,6 +49,7 @@ class CreateProductosTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('marcas');
         Schema::dropIfExists('productos');
     }
 }

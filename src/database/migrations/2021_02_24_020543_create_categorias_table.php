@@ -15,12 +15,13 @@ class CreateCategoriasTable extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->id('idCategoria');
-            $table->bigInteger('idDepartamento')->unsigned();
+            $table->unsignedBigInteger('idDepartamento');
             $table->text('titulo');
             $table->longText('descripcion')->nullable();
             $table->integer('status');
             $table->text('imagen');
             $table->timestamps();
+            $table->foreign('idDepartamento')->references('idDepartamento')->on('departamentos')->onDelete('cascade');
         });
     }
 
