@@ -25,21 +25,21 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="sku">SKU</label>
-                        <input type="text" class="form-control" name="sku" id="sku" required>
+                        <input type="text" class="form-control" name="sku" id="sku">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="Nombre">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" id="nombre" required>
+                        <input type="text" class="form-control" name="nombre" id="nombre">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="Precio">Precio</label>
-                        <input type="text" class="form-control" name="precio" id="precio" placeholder="0.00" required>
+                        <input type="text" class="form-control" name="precio" id="precio" placeholder="0.00">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="Marca">Marca</label>
-                        <select name="marca" id="marca" class="form-control select2" required>
+                        <select name="marca" id="marca" class="form-control select2">
                             @foreach($marcas as $marca)
                                 <option value="{{ $marca->idMarca }}">{{ $marca->titulo }}</option>
                             @endforeach
@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="Departamento">Departamento</label>
-                        <select name="departamentoId" id="departamentoId" class="form-control select2" required>
+                        <select name="departamentoId" id="departamentoId" class="form-control select2">
                             <option value="0" disabled="true" selected="true">Elige un departamento</option>
                             @foreach($departamentos as $departamento)
                                 <option value="{{ $departamento->idDepartamento }}">{{ $departamento->titulo }}</option>
@@ -56,13 +56,13 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="Marca">Categoria</label>
-                        <select name="categoriaId" id="categoriaId" name="categoriaId" class="form-control select2" required>
+                        <select name="categoriaId" id="categoriaId" name="categoriaId" class="form-control select2">
                             <option value="0" disabled="true" selected="true">Elige una categoria</option>
                         </select>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="Departamento">Subcategoria</label>
-                        <select name="subCategoriaId" id="subCategoriaId" class="form-control select2" required>
+                        <select name="subCategoriaId" id="subCategoriaId" class="form-control select2">
                             <option value="0" disabled="true" selected="true">Elige una subcategoria</option>
                         </select>
                     </div>
@@ -72,7 +72,7 @@
                         <label for="Imagen">Imagenes del producto</label>
                         <div class="input-group">
                           <div class="custom-file">
-                            <input type="file" name="imagenes[]" multiple class="custom-file-input" id="file" required data-browser="Subir imagenes" multiple>
+                            <input type="file" name="imagenes[]" multiple class="custom-file-input" id="file" data-browser="Subir imagenes" multiple>
                             <label class="custom-file-label" for="exampleInputFile">Ningún archivo seleccionado</label>
                           </div>
                         </div>
@@ -93,7 +93,7 @@
                                 <label for="Imagen">Imagen stock</label>
                                 <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" name="imagen[]" class="custom-file-input" id="file" required data-browser="Subir imagenes" multiple>
+                                    <input type="file" name="imagen[]" class="custom-file-input" id="file" data-browser="Subir imagenes" multiple>
                                     <label class="custom-file-label" for="exampleInputFile">Seleccionar imagen</label>
                                 </div>
                                 </div>
@@ -175,7 +175,7 @@
                                 <label for="Imagen">Imagen stock</label>
                                 <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" name="imagen[]" class="custom-file-input" id="file" required data-browser="Subir imagenes" multiple>
+                                    <input type="file" name="imagen[]" class="custom-file-input" id="file" data-browser="Subir imagenes" multiple>
                                     <label class="custom-file-label" for="exampleInputFile">Seleccionar imagen</label>
                                 </div>
                                 </div>

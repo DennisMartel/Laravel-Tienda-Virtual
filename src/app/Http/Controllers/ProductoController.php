@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Producto;
+use App\Models\ImagenesProducto;
 
 class ProductoController extends Controller
 {
@@ -23,22 +24,20 @@ class ProductoController extends Controller
 
     public function store(Request $request)
     {
-        $guardarProducto = DB::table('productos')
-            ->insert([
-                'sku'            => $request->sku,
-                'nombre'         => $request->nombre,
-                'precio'         => $request->precio,
-                'slug'           => $request->nombre.$request->sku,
-                'status'         => 0,
-                'marca'          => $request->marca,
-                'departamentoId' => $request->departamentoId,
-                'categoriaId'    => $request->categoriaId,
-                'subCategoriaId' => $request->subCategoriaId,
-                'descripcion'    => $request->descripcion,
-                'detalles'       => $request->detalles,
-            ]);
-
-        if($guardarProducto) {
+        $producto = new Producto();
+        $producto->idProducto = $producto->id;
+        $producto->sku            = $request->sku;
+        $producto->nombre         = $request->nombre;
+        $producto->precio         = $request->precio;
+        $producto->slug           = $request->nombre.$request->sku;
+        $producto->status         = 0;
+        $producto->marca          = $request->marca;
+        $producto->departamentoId = $request->departamentoId;
+        $producto->categoriaId    = $request->categoriaId;
+        $producto->subCategoriaId = $request->subCategoriaId;
+        $producto->descripcion    = $request->descripcion;
+        $producto->detalles       = $request->detalles;
+        if($producto->save()) {
             if($request->imagenes != null && $request->imagenes != "") {
                 foreach($request->file('imagenes') as $imagen) {
                     $random = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(10 / strlen($x)))), 1, 10);
@@ -47,10 +46,10 @@ class ProductoController extends Controller
                     $imagen = $imagen->storeAs('imagenesProducto',$nombreImagen.$random.'.'.$extension);
                     $url = 'http://localhost/ecommerce/src/storage/app/';
                     $url = $url.$imagen;
-                    DB::table('imagenes_productos')
-                        ->insert([
-                            'imagenes'   => $url,
-                        ]);
+                    $imagenesProducto = new ImagenesProducto;
+                    $imagenesProducto->idProducto = $producto->idProducto;
+                    $imagenesProducto->imagenes = $url;
+                    $imagenesProducto->save();
                 }
             }
         }

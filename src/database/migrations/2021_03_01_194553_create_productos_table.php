@@ -23,17 +23,17 @@ class CreateProductosTable extends Migration
 
         Schema::create('productos', function (Blueprint $table) {
             $table->id('idProducto');
-            $table->string('sku');
-            $table->text('nombre');
-            $table->float('precio');
-            $table->longText('slug');
-            $table->unsignedBigInteger('marca');
-            $table->longText('descripcion');
-            $table->longText('detalles');
-            $table->integer('status');
-            $table->unsignedBigInteger('departamentoId');
-            $table->unsignedBigInteger('categoriaId');
-            $table->unsignedBigInteger('subCategoriaId');
+            $table->string('sku')->nullable();
+            $table->text('nombre')->nullable();
+            $table->float('precio')->nullable();
+            $table->longText('slug')->nullable();
+            $table->unsignedBigInteger('marca')->nullable();
+            $table->longText('descripcion')->nullable();
+            $table->longText('detalles')->nullable();
+            $table->integer('status')->nullable();
+            $table->unsignedBigInteger('departamentoId')->nullable();
+            $table->unsignedBigInteger('categoriaId')->nullable();
+            $table->unsignedBigInteger('subCategoriaId')->nullable();
             $table->timestamps();
             $table->foreign('departamentoId')->references('idDepartamento')->on('departamentos')->onDelete('cascade');
             $table->foreign('categoriaId')->references('idCategoria')->on('categorias')->onDelete('cascade');
