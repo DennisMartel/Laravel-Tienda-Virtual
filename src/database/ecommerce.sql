@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-02-2021 a las 22:32:43
+-- Tiempo de generación: 14-03-2021 a las 23:32:58
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.1
 
@@ -29,11 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `banners` (
   `idBanner` bigint(20) UNSIGNED NOT NULL,
-  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `titulo` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagen` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
   `posicion` int(11) NOT NULL,
-  `enlace` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -42,10 +43,9 @@ CREATE TABLE `banners` (
 -- Volcado de datos para la tabla `banners`
 --
 
-INSERT INTO `banners` (`idBanner`, `imagen`, `titulo`, `posicion`, `enlace`, `status`, `created_at`, `updated_at`) VALUES
-(15, 'http://localhost/ecommerce/storage/app/imagenesBanner/Bannerropamujeres1612725202.jpg', 'Banner ropa mujeres', 1, 'http://localhost/ecommerce/public/home', '0', '2021-02-08 01:13:22', '2021-02-08 01:13:22'),
-(17, 'http://localhost/ecommerce/storage/app/imagenesBanner/Bannerropahombres1612730917.jpg', 'Banner ropa hombres', 1, 'http://localhost/ecommerce/public/home', '0', '2021-02-08 02:48:37', '2021-02-08 02:48:37'),
-(18, 'http://localhost/ecommerce/storage/app/imagenesBanner/Bannersupermercado1612730942.png', 'Banner super mercado', 1, 'http://localhost/ecommerce/public/home', '0', '2021-02-08 02:49:02', '2021-02-08 02:49:02');
+INSERT INTO `banners` (`idBanner`, `titulo`, `descripcion`, `imagen`, `status`, `posicion`, `url`, `created_at`, `updated_at`) VALUES
+(1, 'San Valentin', 'El san valentin ha llegado tenemos lo mejor de la ropa aqui', 'http://localhost/ecommerce/src/storage/app/imagenesBanner/SanValentin1615747563.jpg', 0, 1, 'http://localhost/ecommerce/', '2021-03-15 00:46:04', '2021-03-15 00:46:04'),
+(2, 'Ropa Deportiva', 'Tenemos una gran variedad de ropa deportiva para hacer mejorar el fisico', 'http://localhost/ecommerce/src/storage/app/imagenesBanner/RopaDeportiva1615747646.jpg', 0, 1, 'http://localhost/ecommerce/', '2021-03-15 00:47:26', '2021-03-15 00:47:26');
 
 -- --------------------------------------------------------
 
@@ -55,14 +55,16 @@ INSERT INTO `banners` (`idBanner`, `imagen`, `titulo`, `posicion`, `enlace`, `st
 
 CREATE TABLE `carritos` (
   `idCarrito` bigint(20) UNSIGNED NOT NULL,
-  `usuario` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
-  `color` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
-  `talla` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
+  `idProducto` bigint(20) NOT NULL,
+  `sku` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usuario` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `skuId` bigint(20) UNSIGNED NOT NULL,
+  `talla` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `precio` double(8,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -73,24 +75,27 @@ CREATE TABLE `carritos` (
 CREATE TABLE `categorias` (
   `idCategoria` bigint(20) UNSIGNED NOT NULL,
   `idDepartamento` bigint(20) UNSIGNED NOT NULL,
-  `imagen` longtext COLLATE utf8_spanish_ci NOT NULL,
-  `titulo` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
+  `titulo` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `imagen` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `categorias`
 --
 
-INSERT INTO `categorias` (`idCategoria`, `idDepartamento`, `imagen`, `titulo`, `status`, `created_at`, `updated_at`) VALUES
-(4, 3, 'http://localhost/ecommerce/storage/app/categoriaImagenes/Cabellero1612731501.png', 'Cabellero', 0, '2021-02-08 02:58:21', '2021-02-08 02:58:21'),
-(5, 3, 'http://localhost/ecommerce/storage/app/categoriaImagenes/Damas1612731530.jpg', 'Damas', 0, '2021-02-08 02:58:50', '2021-02-08 02:58:50'),
-(6, 3, 'http://localhost/ecommerce/storage/app/categoriaImagenes/Niños1612731605.png', 'Niños', 0, '2021-02-08 03:00:05', '2021-02-08 03:00:05'),
-(7, 3, 'http://localhost/ecommerce/storage/app/categoriaImagenes/Niñas1612731629.png', 'Niñas', 0, '2021-02-08 03:00:29', '2021-02-08 03:00:29'),
-(8, 3, 'http://localhost/ecommerce/storage/app/categoriaImagenes/Calzado1612731671.jpg', 'Calzado', 0, '2021-02-08 03:01:11', '2021-02-08 03:01:11'),
-(9, 7, 'http://localhost/ecommerce/storage/app/categoriaImagenes/Deporte1612731717.png', 'Deporte', 0, '2021-02-08 03:01:57', '2021-02-08 03:01:57');
+INSERT INTO `categorias` (`idCategoria`, `idDepartamento`, `titulo`, `descripcion`, `status`, `imagen`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Damas', NULL, 0, 'http://localhost/ecommerce/src/storage/app/categoriaImagenes/Ellas1615755655.jpg', '2021-03-15 03:00:55', '2021-03-15 03:00:55'),
+(2, 1, 'Caballeros', NULL, 0, 'http://localhost/ecommerce/src/storage/app/categoriaImagenes/Caballeros1615756543.png', '2021-03-15 03:15:43', '2021-03-15 03:15:43'),
+(3, 1, 'Niños', NULL, 0, 'http://localhost/ecommerce/src/storage/app/categoriaImagenes/Niños1615757119.png', '2021-03-15 03:25:19', '2021-03-15 03:25:19'),
+(4, 1, 'Niñas', NULL, 0, 'http://localhost/ecommerce/src/storage/app/categoriaImagenes/Niña1615757226.png', '2021-03-15 03:27:06', '2021-03-15 03:27:06'),
+(5, 1, 'Calzado', NULL, 0, 'http://localhost/ecommerce/src/storage/app/categoriaImagenes/Calzado1615757363.jpg', '2021-03-15 03:29:23', '2021-03-15 03:29:23'),
+(6, 2, 'Computadoras', NULL, 0, 'http://localhost/ecommerce/src/storage/app/categoriaImagenes/Computadoras1615757601.png', '2021-03-15 03:33:21', '2021-03-15 03:33:21'),
+(7, 2, 'Celulares', NULL, 0, 'http://localhost/ecommerce/src/storage/app/categoriaImagenes/Celulares1615757719.jpg', '2021-03-15 03:35:19', '2021-03-15 03:35:19'),
+(8, 2, 'Audífonos', NULL, 0, 'http://localhost/ecommerce/src/storage/app/categoriaImagenes/Audífonos1615757895.png', '2021-03-15 03:38:15', '2021-03-15 03:38:15');
 
 -- --------------------------------------------------------
 
@@ -100,9 +105,10 @@ INSERT INTO `categorias` (`idCategoria`, `idDepartamento`, `imagen`, `titulo`, `
 
 CREATE TABLE `departamentos` (
   `idDepartamento` bigint(20) UNSIGNED NOT NULL,
-  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `titulo` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL,
+  `imagen` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -111,13 +117,9 @@ CREATE TABLE `departamentos` (
 -- Volcado de datos para la tabla `departamentos`
 --
 
-INSERT INTO `departamentos` (`idDepartamento`, `imagen`, `titulo`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'http://localhost/ecommerce/storage/app/departamentoImagenes/Hogar1612726423.jpg', 'Hogar', 0, '2021-02-08 01:33:43', '2021-02-08 01:33:43'),
-(3, 'http://localhost/ecommerce/storage/app/departamentoImagenes/Moda1612726590.jpg', 'Moda', 0, '2021-02-08 01:36:30', '2021-02-08 01:36:30'),
-(4, 'http://localhost/ecommerce/storage/app/departamentoImagenes/Juguetes1612726654.png', 'Juguetes', 0, '2021-02-08 01:37:34', '2021-02-08 01:37:34'),
-(5, 'http://localhost/ecommerce/storage/app/departamentoImagenes/Tecnología1612726697.png', 'Tecnología', 0, '2021-02-08 01:38:17', '2021-02-08 01:38:17'),
-(6, 'http://localhost/ecommerce/storage/app/departamentoImagenes/Covid191612726732.jpg', 'Covid 19', 0, '2021-02-08 01:38:52', '2021-02-08 01:38:52'),
-(7, 'http://localhost/ecommerce/storage/app/departamentoImagenes/Deporte1612731130.jpg', 'Deporte', 0, '2021-02-08 02:52:10', '2021-02-08 02:52:10');
+INSERT INTO `departamentos` (`idDepartamento`, `titulo`, `descripcion`, `status`, `imagen`, `created_at`, `updated_at`) VALUES
+(1, 'Moda', NULL, 0, 'http://localhost/ecommerce/src/storage/app/departamentoImagenes/Moda1615745832.png', '2021-03-15 00:17:13', '2021-03-15 00:17:13'),
+(2, 'Tecnología', NULL, 0, 'http://localhost/ecommerce/src/storage/app/departamentoImagenes/Tecnología1615757553.png', '2021-03-15 03:32:33', '2021-03-15 03:32:33');
 
 -- --------------------------------------------------------
 
@@ -134,6 +136,51 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `imagenes_productos`
+--
+
+CREATE TABLE `imagenes_productos` (
+  `idImagenProducto` bigint(20) UNSIGNED NOT NULL,
+  `idProducto` bigint(20) UNSIGNED NOT NULL,
+  `imagenes` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `imagenes_productos`
+--
+
+INSERT INTO `imagenes_productos` (`idImagenProducto`, `idProducto`, `imagenes`, `created_at`, `updated_at`) VALUES
+(1, 1, 'http://localhost/ecommerce/src/storage/app/imagenesProducto/BlusadamaoldfasionNH7Yv64ckV.jpg', '2021-03-15 00:26:03', '2021-03-15 00:26:03'),
+(2, 1, 'http://localhost/ecommerce/src/storage/app/imagenesProducto/BlusadamaoldfasionH4IbydQm1f.jpg', '2021-03-15 00:26:03', '2021-03-15 00:26:03'),
+(3, 1, 'http://localhost/ecommerce/src/storage/app/imagenesProducto/BlusadamaoldfasionbMvrfCo8xe.jpg', '2021-03-15 00:26:03', '2021-03-15 00:26:03');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `marcas`
+--
+
+CREATE TABLE `marcas` (
+  `idMarca` bigint(20) UNSIGNED NOT NULL,
+  `titulo` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `imagen` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `marcas`
+--
+
+INSERT INTO `marcas` (`idMarca`, `titulo`, `imagen`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Adidas', 'http://localhost/ecommerce/src/storage/app/imagenesMarca/Adidas1615746177.png', 0, '2021-03-15 00:22:57', '2021-03-15 00:22:57');
 
 -- --------------------------------------------------------
 
@@ -155,11 +202,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2021_01_24_225342_create_permission_tables', 1),
-(5, '2021_01_24_234933_create_banners_table', 1),
-(6, '2021_01_31_231519_create_departamentos_table', 1),
-(7, '2021_02_06_232442_create_categorias_table', 1),
-(8, '2021_02_06_232723_create_subcategorias_table', 2);
+(4, '2021_02_18_012250_create_permission_tables', 1),
+(5, '2021_02_24_015816_create_banners_table', 1),
+(6, '2021_02_24_020249_create_departamentos_table', 1),
+(7, '2021_02_24_020543_create_categorias_table', 1),
+(8, '2021_03_01_020543_create_sub_categorias_table', 1),
+(9, '2021_03_01_194553_create_productos_table', 1),
+(10, '2021_03_01_195300_create_imagenes_productos_table', 1),
+(11, '2021_03_01_195349_create_stocks_table', 1),
+(12, '2021_03_04_020543_create_carritos_table', 1);
 
 -- --------------------------------------------------------
 
@@ -223,7 +274,11 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'Todos', 'web', '2021-02-06 23:28:57', '2021-02-06 23:28:57');
+(1, 'Usuarios', 'web', '2021-03-15 00:09:02', '2021-03-15 00:09:02'),
+(2, 'Productos', 'web', '2021-03-15 00:09:03', '2021-03-15 00:09:03'),
+(3, 'Ordenes', 'web', '2021-03-15 00:09:03', '2021-03-15 00:09:03'),
+(4, 'Estadisticas', 'web', '2021-03-15 00:09:04', '2021-03-15 00:09:04'),
+(5, 'Reportes', 'web', '2021-03-15 00:09:04', '2021-03-15 00:09:04');
 
 -- --------------------------------------------------------
 
@@ -232,23 +287,29 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 --
 
 CREATE TABLE `productos` (
-  `skuId` bigint(20) UNSIGNED NOT NULL,
-  `nombre` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
-  `precio` double NOT NULL,
-  `descripcion` longtext COLLATE utf8_spanish_ci DEFAULT NULL,
-  `detalles` longtext COLLATE utf8_spanish_ci DEFAULT NULL,
-  `slug` longtext COLLATE utf8_spanish_ci NOT NULL,
-  `status` int(11) NOT NULL,
-  `retorno` int(11) NOT NULL,
-  `vendido` int(11) NOT NULL,
-  `idDepartamento` bigint(20) UNSIGNED NOT NULL,
-  `idCategoria` bigint(20) UNSIGNED NOT NULL,
-  `idSubCategoria` bigint(20) UNSIGNED NOT NULL,
-  `imagen1` longtext COLLATE utf8_spanish_ci NOT NULL,
-  `imagen2` longtext COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idProducto` bigint(20) UNSIGNED NOT NULL,
+  `sku` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nombre` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `precio` double(8,2) DEFAULT NULL,
+  `slug` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `marca` bigint(20) UNSIGNED DEFAULT NULL,
+  `descripcion` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `detalles` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `variedad` int(11) DEFAULT NULL,
+  `departamentoId` bigint(20) UNSIGNED DEFAULT NULL,
+  `categoriaId` bigint(20) UNSIGNED DEFAULT NULL,
+  `subCategoriaId` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`idProducto`, `sku`, `nombre`, `precio`, `slug`, `marca`, `descripcion`, `detalles`, `status`, `variedad`, `departamentoId`, `categoriaId`, `subCategoriaId`, `created_at`, `updated_at`) VALUES
+(1, '123456', 'Blusa dama old fasion', 10.99, 'Blusa dama old fasion123456', 1, 'Blusa dama old fasion', '• Variedad de Colores\r\n• Tela 100% algodón\r\n• Cuello decorado', 0, NULL, 1, 1, 1, '2021-03-15 00:26:02', '2021-03-15 00:26:02');
 
 -- --------------------------------------------------------
 
@@ -269,8 +330,7 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'administrador', 'web', '2021-02-06 23:30:00', '2021-02-06 23:30:00'),
-(2, 'usuario', 'web', '2021-02-06 23:30:00', '2021-02-06 23:30:00');
+(1, 'admin', 'web', '2021-03-15 00:09:04', '2021-03-15 00:09:04');
 
 -- --------------------------------------------------------
 
@@ -288,7 +348,11 @@ CREATE TABLE `role_has_permissions` (
 --
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
-(1, 1);
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1);
 
 -- --------------------------------------------------------
 
@@ -298,30 +362,39 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 
 CREATE TABLE `stocks` (
   `idStock` bigint(20) UNSIGNED NOT NULL,
-  `skuId` bigint(20) UNSIGNED NOT NULL,
-  `nombreColor` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
-  `color` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
-  `talla` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
-  `imagen` longtext COLLATE utf8_spanish_ci NOT NULL,
+  `idProducto` bigint(20) UNSIGNED NOT NULL,
+  `sku` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `codigoColor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `talla` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unidades` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `subcategorias`
+-- Estructura de tabla para la tabla `sub_categorias`
 --
 
-CREATE TABLE `subcategorias` (
+CREATE TABLE `sub_categorias` (
   `idSubCategoria` bigint(20) UNSIGNED NOT NULL,
   `idCategoria` bigint(20) UNSIGNED NOT NULL,
-  `imagen` longtext COLLATE utf8_spanish_ci NOT NULL,
-  `titulo` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
+  `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagen` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `sub_categorias`
+--
+
+INSERT INTO `sub_categorias` (`idSubCategoria`, `idCategoria`, `titulo`, `descripcion`, `imagen`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Blusas', NULL, 'http://localhost/ecommerce/src/storage/app/imagenesSubcategoria/Blusas1615746049.jpg', 0, '2021-03-15 00:20:49', '2021-03-15 00:20:49');
 
 -- --------------------------------------------------------
 
@@ -345,8 +418,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'DennisMartel', 'marteldennis05@gmail.com', NULL, '$2y$10$2.bYgG9gxM3HYgiFTWISIOqKjopB8e/SVsCFZiASa35c4.872chjC', NULL, '2021-02-07 05:31:49', '2021-02-07 05:31:49'),
-(2, 'Dennis Alexander', 'dennis@gmail.com', NULL, '$2y$10$/JSqALR72gC6cAz9C1t66eX7V4DGZ3M4.yklYBL2Etdg6yFAv2qTS', NULL, '2021-02-07 05:42:08', '2021-02-07 05:42:08');
+(1, 'admin', 'admin123@gmail.com', NULL, '$2y$10$sbxxhE0mXpfNTUIwQg0YNeqyVpMOGndQauk457GH/shO0Xqi9AHrm', NULL, '2021-03-15 00:09:05', '2021-03-15 00:09:05');
 
 --
 -- Índices para tablas volcadas
@@ -369,7 +441,7 @@ ALTER TABLE `carritos`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`idCategoria`),
-  ADD KEY `idDepartamento` (`idDepartamento`);
+  ADD KEY `categorias_iddepartamento_foreign` (`idDepartamento`);
 
 --
 -- Indices de la tabla `departamentos`
@@ -383,6 +455,19 @@ ALTER TABLE `departamentos`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indices de la tabla `imagenes_productos`
+--
+ALTER TABLE `imagenes_productos`
+  ADD PRIMARY KEY (`idImagenProducto`),
+  ADD KEY `imagenes_productos_idproducto_foreign` (`idProducto`);
+
+--
+-- Indices de la tabla `marcas`
+--
+ALTER TABLE `marcas`
+  ADD PRIMARY KEY (`idMarca`);
 
 --
 -- Indices de la tabla `migrations`
@@ -414,22 +499,25 @@ ALTER TABLE `password_resets`
 -- Indices de la tabla `permissions`
 --
 ALTER TABLE `permissions`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
 
 --
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD PRIMARY KEY (`skuId`),
-  ADD KEY `idDepartamento` (`idDepartamento`),
-  ADD KEY `idCategoria` (`idCategoria`),
-  ADD KEY `idSubCategoria` (`idSubCategoria`);
+  ADD PRIMARY KEY (`idProducto`),
+  ADD KEY `productos_departamentoid_foreign` (`departamentoId`),
+  ADD KEY `productos_categoriaid_foreign` (`categoriaId`),
+  ADD KEY `productos_subcategoriaid_foreign` (`subCategoriaId`),
+  ADD KEY `productos_marca_foreign` (`marca`);
 
 --
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
 
 --
 -- Indices de la tabla `role_has_permissions`
@@ -443,14 +531,14 @@ ALTER TABLE `role_has_permissions`
 --
 ALTER TABLE `stocks`
   ADD PRIMARY KEY (`idStock`),
-  ADD KEY `skuId` (`skuId`);
+  ADD KEY `stocks_idproducto_foreign` (`idProducto`);
 
 --
--- Indices de la tabla `subcategorias`
+-- Indices de la tabla `sub_categorias`
 --
-ALTER TABLE `subcategorias`
+ALTER TABLE `sub_categorias`
   ADD PRIMARY KEY (`idSubCategoria`),
-  ADD KEY `idCategoria` (`idCategoria`);
+  ADD KEY `sub_categorias_idcategoria_foreign` (`idCategoria`);
 
 --
 -- Indices de la tabla `users`
@@ -467,7 +555,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `banners`
 --
 ALTER TABLE `banners`
-  MODIFY `idBanner` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idBanner` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `carritos`
@@ -479,13 +567,13 @@ ALTER TABLE `carritos`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idCategoria` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idCategoria` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
-  MODIFY `idDepartamento` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idDepartamento` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
@@ -494,22 +582,40 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `imagenes_productos`
+--
+ALTER TABLE `imagenes_productos`
+  MODIFY `idImagenProducto` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `marcas`
+--
+ALTER TABLE `marcas`
+  MODIFY `idMarca` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `idProducto` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `stocks`
@@ -518,20 +624,32 @@ ALTER TABLE `stocks`
   MODIFY `idStock` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `subcategorias`
+-- AUTO_INCREMENT de la tabla `sub_categorias`
 --
-ALTER TABLE `subcategorias`
-  MODIFY `idSubCategoria` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `sub_categorias`
+  MODIFY `idSubCategoria` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  ADD CONSTRAINT `categorias_iddepartamento_foreign` FOREIGN KEY (`idDepartamento`) REFERENCES `departamentos` (`idDepartamento`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `imagenes_productos`
+--
+ALTER TABLE `imagenes_productos`
+  ADD CONSTRAINT `imagenes_productos_idproducto_foreign` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProducto`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `model_has_permissions`
@@ -546,11 +664,32 @@ ALTER TABLE `model_has_roles`
   ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --
+-- Filtros para la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD CONSTRAINT `productos_categoriaid_foreign` FOREIGN KEY (`categoriaId`) REFERENCES `categorias` (`idCategoria`) ON DELETE CASCADE,
+  ADD CONSTRAINT `productos_departamentoid_foreign` FOREIGN KEY (`departamentoId`) REFERENCES `departamentos` (`idDepartamento`) ON DELETE CASCADE,
+  ADD CONSTRAINT `productos_marca_foreign` FOREIGN KEY (`marca`) REFERENCES `marcas` (`idMarca`) ON DELETE CASCADE,
+  ADD CONSTRAINT `productos_subcategoriaid_foreign` FOREIGN KEY (`subCategoriaId`) REFERENCES `sub_categorias` (`idSubCategoria`) ON DELETE CASCADE;
+
+--
 -- Filtros para la tabla `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
   ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `stocks`
+--
+ALTER TABLE `stocks`
+  ADD CONSTRAINT `stocks_idproducto_foreign` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProducto`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `sub_categorias`
+--
+ALTER TABLE `sub_categorias`
+  ADD CONSTRAINT `sub_categorias_idcategoria_foreign` FOREIGN KEY (`idCategoria`) REFERENCES `categorias` (`idCategoria`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
