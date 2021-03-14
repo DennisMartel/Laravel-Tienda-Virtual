@@ -1,12 +1,8 @@
 @extends('layouts.app')
 @section('title', 'Inicio')
 @section('content')
-
-
-
-
     <!-- ========================= SECTION INTRO ========================= -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carousel-ecommerce" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             @foreach ($banners as $key => $banner)
                 <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
@@ -15,24 +11,47 @@
         </ol>
         <div class="carousel-inner">
             @foreach ($banners as $key => $banner)
-                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" data-interval="300">
                     <img src="{{ $banner->imagen }}" class="d-block w-100" alt="{{ $banner->titulo }}" style="max-height: 400px;">
                 </div>
             @endforeach
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carousel-ecommerce" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carousel-ecommerce" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
     </div>
     <!-- ========================= SECTION INTRO END// ========================= -->
 
+    <!-- ========================= SECTION CATEGORIES ========================= -->
+    <section class="section-name bg padding-y-sm mt-3">
+        <div class="container">
+            <header class="section-heading">
+                <h3 class="section-title font-weight-light text-center">Categorias Destacadas</h3>
+            </header><!-- sect-heading -->
+            <div class="row">
+                @foreach($categorias as $key => $categoria)
+                    <div class="col-6 col-sm-6 col-md 3 col-lg-2 col-xl-2">
+                        <div class="circulo-categorias" style="width: 180px; height: 180px; overflow: hidden; border-radius: 50%;border: 2px solid #3167eb; ">
+                            <a href="{{ url('categoria', ucwords(str_replace(" "," ",$categoria->titulo))) }}">
+                                <img src="{{ $categoria->imagen }}" alt="{{ $categoria->titulo }}" style="width: 180px; height: 180px; object-fit: cover; text-align: center; display: block">
+                            </a>
+                        </div>
+                        <p class="text-center font-weight-bold mt-2" style="font-size: 20px;">{{ $categoria->titulo }}</p>
+                    </div>
+                @endforeach
+            </div> <!-- row.// -->
+        </div><!-- container // -->
+    </section>
+
+    <!-- ========================= SECTION CATEGORIES END// ========================= -->
+
     <!-- ========================= SECTION FEATURE ========================= -->
-    <section class="section-content padding-y-sm">
+    {{-- <section class="section-content padding-y-sm">
         <div class="container">
             <article class="card card-body">
 
@@ -72,9 +91,8 @@
             </article>
 
         </div> <!-- container .//  -->
-    </section>
+    </section> --}}
     <!-- ========================= SECTION FEATURE END// ========================= -->
-
 
     <!-- ========================= SECTION  ========================= -->
     <section class="section-name padding-y-sm">
@@ -82,7 +100,7 @@
 
             <header class="section-heading">
                 <a href="#" class="btn btn-outline-primary float-right">See all</a>
-                <h3 class="section-title font-weight-light">Nuevos Productos</h3>
+                <h3 class="section-title font-weight-light text-center">Nuevos Productos</h3>
             </header><!-- sect-heading -->
 
 
@@ -118,7 +136,7 @@
     <section class="section-name bg padding-y-sm">
         <div class="container">
             <header class="section-heading">
-                <h3 class="section-title font-weight-light">Marcas</h3>
+                <h3 class="section-title font-weight-light text-center">Marcas Destacadas</h3>
             </header><!-- sect-heading -->
 
             <div class="row">
@@ -137,4 +155,9 @@
     </section>
     <!-- ========================= SECTION  END// ========================= -->
 
+    <script>
+        $('.carousel').carousel({
+            interval: 5000
+        })
+    </script>
 @endsection

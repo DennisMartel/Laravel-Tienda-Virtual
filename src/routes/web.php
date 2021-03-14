@@ -7,6 +7,7 @@ Auth::routes();
 // User Web Routes
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/producto', [App\Http\Controllers\HomeController::class, 'producto'])->name('producto');
 Route::get('/shop', [App\Http\Controllers\HomeController::class, 'shop'])->name('shop');
 Route::get('/cart', [App\Http\Controllers\HomeController::class, 'cart'])->name('cart');
 Route::get('/d/{departamento}', [App\Http\Controllers\HomeController::class, 'departamento'])->name('departamento');
