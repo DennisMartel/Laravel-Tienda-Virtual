@@ -19,15 +19,17 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark bg-dark">
+  <nav class="main-header navbar navbar-expand navbar-dark" style="background: #27ae60">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -150,9 +152,9 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background: #2c3e50">
     <!-- Brand Logo -->
-    <a href="{{ url('dashboard') }}" class="brand-link">
+    <a href="{{ url('dashboard') }}" class="brand-link" style="background: #27ae60">
       <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Tienda Virtual</span>
     </a>
@@ -203,7 +205,7 @@
           <li class="nav-item has-treeview">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
-              <p>Usuarios <i class="fas fa-angle-left right"></i></p>
+              <p>usuarios <i class="fas fa-angle-left right"></i></p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -222,8 +224,8 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="" class="nav-link">
-              <i class="nav-icon fas fa-boxes"></i>
-              <p>Inventario <i class="right fas fa-angle-left"></i></p>
+              <i class="nav-icon fas fa-box-open"></i>
+              <p>Productos <i class="right fas fa-angle-left"></i></p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -281,57 +283,90 @@
               </li>
             </ul>
           </li>
-          <li class="nav-header">GESTOR DE SECCIONES</li>
-          <li class="nav-item">
-            <a href="{{ url('departamentos') }}" class="nav-link">
-              <i class="nav-icon far fa-circle"></i>
-              <p>Departamentos</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('categorias') }}" class="nav-link">
-              <i class="nav-icon far fa-circle"></i>
-              <p>Categorias</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('subcategorias') }}" class="nav-link">
-              <i class="nav-icon far fa-circle"></i>
-              <p>Subcategorias</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('marcas') }}" class="nav-link">
-              <i class="nav-icon far fa-circle"></i>
-              <p>Marcas</p>
-            </a>
-          </li>
-          <li class="nav-header">ELEMENTOS WEB</li>
-          <li class="nav-item">
-            <a href="{{ url('banner') }}" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>Banner</p>
-            </a>
-          </li>
-          <li class="nav-item">
+
+          <li class="nav-item has-treeview">
             <a href="" class="nav-link">
-              <i class="nav-icon fas fa-percentage"></i>
-              <p>Promociones</p>
+              <i class="nav-icon fas fa-bookmark"></i>
+              <p>
+                Gestor de Secciones
+                <i class="fas fa-angle-left right"></i>
+              </p>
             </a>
-          </li>
-          <li class="nav-header">ESTADISTICAS</li>
-          <li class="nav-item">
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('departamentos') }}" class="nav-link">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>Departamentos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('categorias') }}" class="nav-link">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>Categorias</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('subcategorias') }}" class="nav-link">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>Subcategorias</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('marcas') }}" class="nav-link">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>Marcas</p>
+                </a>
+              </li>
+            </ul>
+          </li> 
+          
+          <li class="nav-item has-treeview">
             <a href="" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>Gráficas</p>
+              <i class="nav-icon fas fa-globe-europe"></i>
+              <p>
+                Elementos Web
+                <i class="fas fa-angle-left right"></i>
+              </p>
             </a>
-          </li>
-          <li class="nav-item">
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('banner') }}" class="nav-link">
+                  <i class="nav-icon far fa-image"></i>
+                  <p>Banner</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="nav-icon fas fa-percentage"></i>
+                  <p>Promociones</p>
+                </a>
+              </li>
+            </ul>
+          </li> 
+
+          <li class="nav-item has-treeview">
             <a href="" class="nav-link">
-              <i class="nav-icon fas fa-file-pdf"></i>
-              <p>Reportes</p>
+              <i class="nav-icon fas fa-chart-line"></i>
+              <p>
+                Reportes y Estadisticas
+                <i class="fas fa-angle-left right"></i>
+              </p>
             </a>
-          </li>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>Gráficas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="nav-icon fas fa-file-pdf"></i>
+                  <p>Reportes</p>
+                </a>
+              </li>
+            </ul>
+          </li> 
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -376,6 +411,9 @@
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
+
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- page script -->
 <script>
   $(function () {
